@@ -1,0 +1,137 @@
+{
+  "project_info": {
+    "project_number": "307753783953",
+    "firebase_url": "https://bisonswap-a0af2.firebaseio.com",
+    "project_id": "bisonswap-a0af2",
+    "storage_bucket": "bisonswap-a0af2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:307753783953:android:c89241edef025c93",
+        "android_client_info": {
+          "package_name": "lipscomb.bisonswaptest"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "307753783953-11phjgdpgo7gmdn8b5ptresigr8gli3t.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "lipscomb.bisonswaptest",
+            "certificate_hash": "b3b655982d0aef6be4bd061186dbbfa6f476dd9c"
+          }
+        },
+        {
+          "client_id": "307753783953-n4kl9bdmhpe7lsf6qp7t9ov2jt6p72hf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "lipscomb.bisonswaptest",
+            "certificate_hash": "f1041b5d7564e1ac2c54e9b443f58178020005fc"
+          }
+        },
+        {
+          "client_id": "307753783953-7aeiga8q89ii8sqr8t8td7e0r6e6ukm2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "lipscomb.bisonswaptest",
+            "certificate_hash": "43f440603466f086839fd974abac1a1f667fb605"
+          }
+        },
+        {
+          "client_id": "307753783953-ps7ibtjc52n96f25o860km3edecqldbp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCQGWuVi6r_wXWLWmljGmltLqSq_5DNR8s"
+        },
+        {
+          "current_key": "AIzaSyDXZn0HCgcZqZzKw5yXaOjWcubZjOLem_w"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "307753783953-ps7ibtjc52n96f25o860km3edecqldbp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:307753783953:android:2f226078e705e2b5",
+        "android_client_info": {
+          "package_name": "com.bisonswap.bisonswap"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "307753783953-l6scakvjtbinf1g8prt53nud7qrcrsmj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.bisonswap.bisonswap",
+            "certificate_hash": "b3b655982d0aef6be4bd061186dbbfa6f476dd9c"
+          }
+        },
+        {
+          "client_id": "307753783953-6c24u63ud6hfg2grds8oabgpccii2mrl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.bisonswap.bisonswap",
+            "certificate_hash": "43f440603466f086839fd974abac1a1f667fb605"
+          }
+        },
+        {
+          "client_id": "307753783953-87d84b28e4ct56u32tja2ne9ffrbev5f.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.bisonswap.bisonswap",
+            "certificate_hash": "f1041b5d7564e1ac2c54e9b443f58178020005fc"
+          }
+        },
+        {
+          "client_id": "307753783953-ps7ibtjc52n96f25o860km3edecqldbp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCQGWuVi6r_wXWLWmljGmltLqSq_5DNR8s"
+        },
+        {
+          "current_key": "AIzaSyDXZn0HCgcZqZzKw5yXaOjWcubZjOLem_w"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "307753783953-ps7ibtjc52n96f25o860km3edecqldbp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
