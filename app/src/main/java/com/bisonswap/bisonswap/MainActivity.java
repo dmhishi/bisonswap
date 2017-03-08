@@ -113,6 +113,9 @@ public class MainActivity extends AppCompatActivity
             mFirebaseAuth.signOut();
             startActivity(new Intent(this, SignIn.class));
         }
+        else if (id == R.id.chat) {
+            startActivity(new Intent(this, Chat.class));
+        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
