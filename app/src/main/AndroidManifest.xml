@@ -20,7 +20,8 @@
         </activity>
         <activity android:name=".sign_in" />
         <activity android:name=".SignIn" />
-        <activity android:name=".Chat"></activity>
+        <activity android:name=".Chat" />
+        <activity android:name="com.firebase.ui.AddNewItem"></activity>
     </application>
 
 </manifest>

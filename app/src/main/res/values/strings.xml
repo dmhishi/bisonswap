@@ -18,4 +18,20 @@
     <string name="fresh_config">Fresh Config</string>
     <string name="cause_crash">Cause Crash</string>
     <string name="banner_ad_unit_id" translatable="false">ca-app-pub-3940256099942544/6300978111</string>
+
+    <string-array name="category_array">
+        <item>Cat 1</item>
+        <item>Cat 2</item>
+        <item>Cat 3</item>
+        <item>Cat 4</item>
+        <item>Cat 5</item>
+    </string-array>
+
+    <string-array name="rating_array">
+        <item>Cat 1</item>
+        <item>Cat 2</item>
+        <item>Cat 3</item>
+        <item>Cat 4</item>
+        <item>Cat 5</item>
+    </string-array>
 </resources>
