@@ -14,6 +14,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.firebase.ui.AddNewItem;
 import com.google.android.gms.auth.api.Auth;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -97,6 +98,8 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_home) {
             startActivity(new Intent(this, MainActivity.class));
+        } else if (id == R.id.nav_add_new_item) {
+            startActivity(new Intent(this, AddNewItem.class));
         } else if (id == R.id.nav_gallery) {
 
         } else if (id == R.id.nav_slideshow) {
