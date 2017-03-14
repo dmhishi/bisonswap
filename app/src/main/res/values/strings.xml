@@ -23,9 +23,9 @@
         <item>Category</item>
         <item>Cat 1</item>
         <item>Cat 2</item>
-        <item>Cat 3</item>
-        <item>Cat 4</item>
-        <item>Cat 5</item>
+        <item>...</item>
+        <item>Cat 8</item>
+        <item>Cat 9</item>
     </string-array>
 
     <string-array name="rating_array">

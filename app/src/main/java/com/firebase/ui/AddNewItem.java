@@ -48,11 +48,11 @@ public class AddNewItem extends AppCompatActivity {
         categoryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         categorySpinner.setAdapter(categoryAdapter);
 
-        Spinner ratingSpinner = (Spinner) findViewById(R.id.itemCategory);
+        Spinner ratingSpinner = (Spinner) findViewById(R.id.itemRating);
         ArrayAdapter<CharSequence> ratingAdapter = ArrayAdapter.createFromResource(this,
                 R.array.rating_array, android.R.layout.simple_spinner_item);
         ratingAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        ratingSpinner.setAdapter(categoryAdapter);
+        ratingSpinner.setAdapter(ratingAdapter);
 
         categorySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
