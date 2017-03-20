@@ -323,6 +323,9 @@ public class Chat extends AppCompatActivity implements
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
+            case R.id.home:
+                startActivity(new Intent(this, MainActivity.class));
+                return true;
             case R.id.invite_menu:
                 sendInvitation();
                 return true;

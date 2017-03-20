@@ -13,6 +13,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListAdapter;
+import android.widget.ListView;
+import android.widget.Toast;
 
 import com.firebase.ui.AddNewItem;
 import com.google.android.gms.auth.api.Auth;
@@ -57,6 +62,25 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        //For Item Page
+        String[] stuffs = {"Item1", "Item2", "Item3", "Item 4", "Item 5", "Item 6", "Item 7", "Item 8"};
+        ListAdapter bisonAdapter = new CustomAdapter(this, stuffs);
+        ListView bisonListView = (ListView) findViewById(R.id.bison_listview);
+        bisonListView.setAdapter(bisonAdapter);
+
+        //TODO: Change this to have to go to page
+        bisonListView.setOnItemClickListener(
+                new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        String stuff = String.valueOf(parent.getItemAtPosition(position));
+                        Toast.makeText(MainActivity.this, stuff, Toast.LENGTH_LONG);
+                    }
+
+                }
+        );
+
     }
 
     @Override
