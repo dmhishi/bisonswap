@@ -19,6 +19,7 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.firebase.ui.AddNewItem;
 import com.google.android.gms.auth.api.Auth;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -43,14 +44,15 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        //useful if we need to add a floating button
+        /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
-        });
+        });*/
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -121,6 +123,8 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_home) {
             startActivity(new Intent(this, MainActivity.class));
+        } else if (id == R.id.nav_add_new_item) {
+            startActivity(new Intent(this, AddNewItem.class));
         } else if (id == R.id.nav_gallery) {
 
         } else if (id == R.id.nav_slideshow) {

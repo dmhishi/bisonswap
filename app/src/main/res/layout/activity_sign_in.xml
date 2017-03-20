@@ -1,26 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/sign_in_layout"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
-    <TextView
+    <ImageView
+        android:layout_marginTop="120dp"
+        android:id="@+id/logo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="30sp"
-        android:textStyle="bold"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="40dp"
-        android:text="@string/sign_in"/>
+        android:layout_centerHorizontal="true"
+        android:layout_centerInParent="false"
+        android:src="@drawable/logo" />
 
-    <com.google.android.gms.common.SignInButton
+    <TextView
+        android:id="@+id/app_name_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/logo"
+        android:layout_centerHorizontal="true"
+        android:layout_centerInParent="false"
+        android:gravity="center_horizontal"
+        android:text="@string/app_name"
+        android:textSize="50sp"
+        android:textStyle="bold" />
+
+    <!--com.google.android.gms.common.SignInButton
+        android:layout_below="@+id/sign_in_text"
         android:id="@+id/sign_in_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
         android:visibility="visible"
-        android:layout_gravity="center"/>
-
-</FrameLayout>
+        android:gravity="center_horizontal"/-->
+    <ImageButton
+        android:layout_marginTop="15dp"
+        android:id="@+id/sign_in_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/app_name_text"
+        android:layout_centerHorizontal="true"
+        android:layout_centerInParent="false"
+        android:background="@null"
+        android:src="@drawable/btn_google_signin" />
+</RelativeLayout>

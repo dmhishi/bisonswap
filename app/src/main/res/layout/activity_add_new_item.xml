@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.firebase.ui.AddNewItem">
+
+    <EditText
+        android:id="@+id/itemName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Name" />
+
+    <Spinner
+        android:layout_below="@+id/itemName"
+        android:id="@+id/itemCategory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <Spinner
+        android:layout_below="@+id/itemCategory"
+        android:id="@+id/itemRating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/itemDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/itemRating"
+        android:ems="10"
+        android:hint="Description"
+        android:inputType="textMultiLine"
+        android:lines="4"
+        android:gravity="top|left" />
+
+    <Button
+        android:id="@+id/pic_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/itemDescription"
+        android:text="Upload image #1"
+        android:onClick="browseImage"/>
+
+    <Button
+        android:id="@+id/pic_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/pic_1"
+        android:text="Upload Image #2" />
+
+    <Button
+        android:id="@+id/pic_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:layout_below="@+id/pic_2"
+        android:text="Upload Image #3" />
+
+    <Button
+        android:id="@+id/pic_4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/pic_3"
+        android:text="Upload Image #4" />
+
+    <Button
+        android:id="@+id/pic_5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/pic_4"
+        android:text="Upload Image #5" />
+
+    <Button
+        android:id="@+id/submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/pic_5"
+        android:text="Submit"
+        android:onClick="sendData" />
+</RelativeLayout>
