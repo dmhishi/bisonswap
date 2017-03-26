@@ -1,5 +1,6 @@
 package com.bisonswap.bisonswap;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -81,6 +82,9 @@ public class SignIn extends AppCompatActivity implements GoogleApiClient.OnConne
     }
 
     private void signIn() {
+        ProgressDialog dialog = new ProgressDialog(this);
+        dialog.setTitle("Connecting...");
+        dialog.show();
         Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
         startActivityForResult(signInIntent, RC_SIGN_IN);
     }

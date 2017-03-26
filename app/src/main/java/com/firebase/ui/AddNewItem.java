@@ -4,9 +4,8 @@ import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.net.Uri;
-import android.provider.Settings;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.AdapterView;
@@ -19,23 +18,19 @@ import com.bisonswap.bisonswap.R;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.storage.StorageReference;
 
-import java.net.URI;
-
 public class AddNewItem extends AppCompatActivity {
 
     private StorageReference storageReference;
     private DatabaseReference databaseReference;
     private String itemName;
     private String itemCategory;
-    private String itemRating;
+    private String itemCondition;
     private String itemDescription;
-
-    private Uri[] imgUriArray = new Uri[5];
-    private int IMAGE_INDEX;
+    private Uri imgUri;
 
     private static final String STORAGE_PATH = "image/";
     private static final String DATABASE_PATH = "image";
-    private static final int REQUEST_CODE = 1234;
+    private static final int PICK_IMAGE_REQUEST_CODE = 1234;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +43,7 @@ public class AddNewItem extends AppCompatActivity {
         categoryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         categorySpinner.setAdapter(categoryAdapter);
 
-        Spinner ratingSpinner = (Spinner) findViewById(R.id.itemRating);
+        Spinner ratingSpinner = (Spinner) findViewById(R.id.itemCondition);
         ArrayAdapter<CharSequence> ratingAdapter = ArrayAdapter.createFromResource(this,
                 R.array.rating_array, android.R.layout.simple_spinner_item);
         ratingAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -69,7 +64,7 @@ public class AddNewItem extends AppCompatActivity {
         ratingSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                itemRating = adapterView.getItemAtPosition(i).toString();
+                itemCondition = adapterView.getItemAtPosition(i).toString();
             }
 
             @Override
@@ -82,8 +77,8 @@ public class AddNewItem extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == REQUEST_CODE && resultCode == RESULT_OK && data != null && data.getData() != null) {
-            imgUriArray[IMAGE_INDEX] = data.getData();
+        if(requestCode == PICK_IMAGE_REQUEST_CODE && resultCode == RESULT_OK && data != null && data.getData() != null) {
+            imgUri = data.getData();
         }
     }
 
@@ -98,7 +93,7 @@ public class AddNewItem extends AppCompatActivity {
         dialog.setTitle("Submitting...");
         dialog.show();
         //remember to handle all images chosen
-        StorageReference sRef = storageReference.child(STORAGE_PATH + System.currentTimeMillis()+getImageExt(imgUriArray[0]));
+        StorageReference sRef = storageReference.child(STORAGE_PATH + System.currentTimeMillis()+getImageExt(imgUri));
         itemName = ((EditText) findViewById(R.id.itemName)).getText().toString();
         itemDescription = ((EditText) findViewById(R.id.itemDescription)).getText().toString();
     }
@@ -107,6 +102,6 @@ public class AddNewItem extends AppCompatActivity {
         Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(Intent.createChooser(intent, "Select Image"), REQUEST_CODE);
+        startActivityForResult(Intent.createChooser(intent, "Select Image"), PICK_IMAGE_REQUEST_CODE);
     }
 }

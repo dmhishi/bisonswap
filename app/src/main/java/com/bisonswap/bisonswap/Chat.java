@@ -109,6 +109,9 @@ public class Chat extends AppCompatActivity implements
     private AdView mAdView;
     private FirebaseRemoteConfig mFirebaseRemoteConfig;
     private GoogleApiClient mGoogleApiClient;
+    private String userEmail;
+    private String ownerEmail;
+    private String chatID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -131,6 +134,9 @@ public class Chat extends AppCompatActivity implements
             mUsername = mFirebaseUser.getDisplayName();
             mPhotoUrl = mFirebaseUser.getPhotoUrl().toString();
         }
+        userEmail = mFirebaseUser.getEmail().replaceAll("\\.", "(");
+        ownerEmail = getIntent().getStringExtra(ownerEmail).replaceAll("\\.", "(");
+        chatID = (ownerEmail.compareTo(userEmail)<0?ownerEmail:userEmail) + "_BISONSWAP_" + (ownerEmail.compareTo(userEmail)>0?ownerEmail:userEmail);
 
         mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .enableAutoManage(this /* FragmentActivity */, this /* OnConnectionFailedListener */)
