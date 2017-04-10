@@ -23,7 +23,11 @@
         <activity android:name=".Chat" />
         <activity android:name="com.firebase.ui.AddNewItem" />
         <activity android:name=".AddItem" />
+<<<<<<< HEAD
         <activity android:name=".ChatList"></activity>
+=======
+        <activity android:name=".ItemActivity"></activity>
+>>>>>>> 6998030cd3c7e15a5d7a025304dd830f42620a0f
     </application>
 
 </manifest>
