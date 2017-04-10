@@ -22,7 +22,8 @@
         <activity android:name=".SignIn" />
         <activity android:name=".Chat" />
         <activity android:name="com.firebase.ui.AddNewItem" />
-        <activity android:name=".AddItem"></activity>
+        <activity android:name=".AddItem" />
+        <activity android:name=".ItemActivity"></activity>
     </application>
 
 </manifest>

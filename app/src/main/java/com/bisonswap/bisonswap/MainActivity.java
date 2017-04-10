@@ -75,14 +75,13 @@ public class MainActivity extends AppCompatActivity
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         String stuff = String.valueOf(parent.getItemAtPosition(position));
-                        Toast.makeText(MainActivity.this, stuff, Toast.LENGTH_LONG);
+                        startActivity(new Intent(MainActivity.this, ItemActivity.class));
                     }
 
                 }
         );
 
     }
-
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
