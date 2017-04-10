@@ -22,6 +22,7 @@ import com.firebase.ui.storage.images.FirebaseImageLoader;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -43,6 +44,8 @@ public class AddItem extends AppCompatActivity implements View.OnClickListener /
     private Uri filePath;
     private StorageReference sRef;
     private DatabaseReference dRef;
+    private FirebaseAuth mFirebaseAuth;
+    private FirebaseUser mFirebaseUser;
 
     private String itemName;
     private String itemCategory;
@@ -55,6 +58,17 @@ public class AddItem extends AppCompatActivity implements View.OnClickListener /
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_item);
+
+        // Initialize Firebase Auth
+        mFirebaseAuth = FirebaseAuth.getInstance();
+        mFirebaseUser = mFirebaseAuth.getCurrentUser();
+
+        if (mFirebaseUser == null) {
+            // Not signed in, launch the Sign In activity
+            startActivity(new Intent(this, SignIn.class));
+            finish();
+            return;
+        }
 
         Spinner categorySpinner = (Spinner) findViewById(R.id.itemCategory);
         ArrayAdapter<CharSequence> categoryAdapter = ArrayAdapter.createFromResource(this,
@@ -128,7 +142,7 @@ public class AddItem extends AppCompatActivity implements View.OnClickListener /
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                             Item item = new Item(itemName, itemCategory, itemCondition, itemDescription, imgName, userEmail);
                             dRef.child("items/" + imgName).setValue(item);
-                            Glide.with(getBaseContext())
+                            Glide.with(AddItem.this)
                                     .using(new FirebaseImageLoader())
                                     .load(sRef.child("images").child(imgName))
                                     .into(imageView);

@@ -11,13 +11,9 @@
             android:icon="@drawable/ic_menu_send"
             android:title="Add new item"/>
         <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="Gallery" />
-        <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Slideshow" />
+            android:id="@+id/messages"
+            android:icon="@drawable/ic_menu_send"
+            android:title="Messages" />
         <item
             android:id="@+id/nav_manage"
             android:icon="@drawable/ic_menu_manage"

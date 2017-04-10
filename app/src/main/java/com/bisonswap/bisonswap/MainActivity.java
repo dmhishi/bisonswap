@@ -125,10 +125,8 @@ public class MainActivity extends AppCompatActivity
             startActivity(new Intent(this, MainActivity.class));
         } else if (id == R.id.nav_add_new_item) {
             startActivity(new Intent(this, AddItem.class));
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
+        } else if (id == R.id.messages) {
+            startActivity(new Intent(this, ChatList.class));
         } else if (id == R.id.nav_manage) {
 
         } else if (id == R.id.nav_share) {

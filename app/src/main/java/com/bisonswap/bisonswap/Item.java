@@ -12,16 +12,16 @@ public class Item {
     public String category;
     public String condition;
     public String description;
-    public String imgRef;
+    public String imgName;
     public String ownerEmail;
 
-    public Item(String name, String category, String rating, String description, String imgRef, String ownerEmail)
+    public Item(String name, String category, String rating, String description, String imgName, String ownerEmail)
     {
         this.name = name;
         this.category = category;
         this.condition = rating;
         this.description = description;
-        this.imgRef = imgRef;
+        this.imgName = imgName;
         this.ownerEmail = ownerEmail;
     }
 

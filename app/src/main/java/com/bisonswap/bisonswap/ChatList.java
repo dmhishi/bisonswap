@@ -68,7 +68,7 @@ import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class Chat extends AppCompatActivity implements
+public class ChatList extends AppCompatActivity implements
         GoogleApiClient.OnConnectionFailedListener {
 
     public static class MessageViewHolder extends RecyclerView.ViewHolder {
@@ -135,7 +135,7 @@ public class Chat extends AppCompatActivity implements
             mPhotoUrl = mFirebaseUser.getPhotoUrl().toString();
         }
         userEmail = mFirebaseUser.getEmail().replaceAll("\\.", "(");
-        ownerEmail = "fischerpl@mail(lipscomb(edu"; //getIntent().getStringExtra(ownerEmail).replaceAll("\\.", "(");
+        ownerEmail = getIntent().getStringExtra(ownerEmail).replaceAll("\\.", "(");
         chatID = (ownerEmail.compareTo(userEmail)<0?ownerEmail:userEmail) + "_BISONSWAP_" + (ownerEmail.compareTo(userEmail)>0?ownerEmail:userEmail);
 
         mGoogleApiClient = new GoogleApiClient.Builder(this)
@@ -153,7 +153,7 @@ public class Chat extends AppCompatActivity implements
                 FriendlyMessage.class,
                 R.layout.item_message,
                 MessageViewHolder.class,
-                mFirebaseDatabaseReference.child(MESSAGES_CHILD).child(chatID)) {
+                mFirebaseDatabaseReference.child(MESSAGES_CHILD)) {
 
             @Override
             protected FriendlyMessage parseSnapshot(DataSnapshot snapshot) {
@@ -170,10 +170,10 @@ public class Chat extends AppCompatActivity implements
                 viewHolder.messageTextView.setText(friendlyMessage.getText());
                 viewHolder.messengerTextView.setText(friendlyMessage.getName());
                 if (friendlyMessage.getPhotoUrl() == null) {
-                    viewHolder.messengerImageView.setImageDrawable(ContextCompat.getDrawable(Chat.this,
+                    viewHolder.messengerImageView.setImageDrawable(ContextCompat.getDrawable(ChatList.this,
                             R.drawable.ic_account_circle_black_36dp));
                 } else {
-                    Glide.with(Chat.this)
+                    Glide.with(ChatList.this)
                             .load(friendlyMessage.getPhotoUrl())
                             .into(viewHolder.messengerImageView);
                 }
@@ -261,7 +261,7 @@ public class Chat extends AppCompatActivity implements
             public void onClick(View view) {
                 FriendlyMessage friendlyMessage = new FriendlyMessage(mMessageEditText.getText().toString(), mUsername,
                         mPhotoUrl);
-                mFirebaseDatabaseReference.child(MESSAGES_CHILD).child(chatID).push().setValue(friendlyMessage);
+                mFirebaseDatabaseReference.child(MESSAGES_CHILD).push().setValue(friendlyMessage);
                 mMessageEditText.setText("");
                 mFirebaseAnalytics.logEvent(MESSAGE_SENT_EVENT, null);
             }
