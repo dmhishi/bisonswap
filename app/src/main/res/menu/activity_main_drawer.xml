@@ -22,6 +22,14 @@
             android:id="@+id/chat"
             android:icon="@drawable/ic_menu_send"
             android:title="Chat" />
+        <item
+            android:id="@+id/chat_list"
+            android:icon="@drawable/ic_menu_send"
+            android:title="Chat List" />
+        <item
+            android:id="@+id/chat_pick"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Chat Picker" />
     </group>
 
     <item android:title="Communicate">

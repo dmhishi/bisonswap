@@ -141,7 +141,12 @@ public class MainActivity extends AppCompatActivity
         else if (id == R.id.chat) {
             startActivity(new Intent(this, Chat.class));
         }
-
+        else if(id == R.id.chat_list) {
+            startActivity(new Intent(this, ChatList.class));
+        }
+        else if(id == R.id.chat_pick) {
+            startActivity(new Intent(this, ChatPick.class));
+        }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
