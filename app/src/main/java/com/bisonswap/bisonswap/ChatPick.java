@@ -19,6 +19,7 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class ChatPick extends AppCompatActivity {
     private FirebaseAuth mFirebaseAuth;
@@ -57,7 +58,7 @@ public class ChatPick extends AppCompatActivity {
                         if(keySplit[0].equals(mFirebaseUser.getEmail())) {
                             emails.add(keySplit[1]);
                         }
-                        else {
+                        else if(keySplit[1].equals(mFirebaseUser.getEmail())){
                             emails.add(keySplit[0]);
                         }
                     }

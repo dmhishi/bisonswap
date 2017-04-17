@@ -135,8 +135,8 @@ public class Chat extends AppCompatActivity implements
             mPhotoUrl = mFirebaseUser.getPhotoUrl().toString();
         }
         userEmail = mFirebaseUser.getEmail().replaceAll("\\.", "(");
-        ownerEmail = getIntent().getStringExtra("ownerEmail").replaceAll("\\.", "(");
-//        ownerEmail = "fischerpl@mail(lipscomb(edu"; //getIntent().getStringExtra(ownerEmail).replaceAll("\\.", "(");
+//        ownerEmail = getIntent().getStringExtra("ownerEmail").replaceAll("\\.", "(");
+        ownerEmail = "test@mail(lipscomb(edu"; //getIntent().getStringExtra(ownerEmail).replaceAll("\\.", "(");
         chatID = (ownerEmail.compareTo(userEmail)<0?ownerEmail:userEmail) + "_BISONSWAP_" + (ownerEmail.compareTo(userEmail)>0?ownerEmail:userEmail);
 
         mGoogleApiClient = new GoogleApiClient.Builder(this)

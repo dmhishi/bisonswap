@@ -134,11 +134,10 @@ public class ChatList extends AppCompatActivity implements
             mUsername = mFirebaseUser.getDisplayName();
             mPhotoUrl = mFirebaseUser.getPhotoUrl().toString();
         }
-//        String email = getIntent().getStringExtra("ownerEmail");
-//        Log.d("EMAIL", email);
         userEmail = mFirebaseUser.getEmail().replaceAll("\\.", "(");
-        ownerEmail = getIntent().getStringExtra("ownerEmail").replaceAll("\\.", "(");
-        chatID = (ownerEmail.compareTo(userEmail)<0?ownerEmail:userEmail) + "_BISONSWAP_" + (ownerEmail.compareTo(userEmail)>0?ownerEmail:userEmail);
+        //ownerEmail = getIntent().getStringExtra("ownerEmail").replaceAll("\\.", "(");
+        ownerEmail = "fischerpl@mail(lipscomb(edu"; //getIntent().getStringExtra(ownerEmail).replaceAll("\\.", "(");
+        //chatID = (ownerEmail.compareTo(userEmail)<0?ownerEmail:userEmail) + "_BISONSWAP_" + (ownerEmail.compareTo(userEmail)>0?ownerEmail:userEmail);
 
         mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .enableAutoManage(this /* FragmentActivity */, this /* OnConnectionFailedListener */)
@@ -155,7 +154,7 @@ public class ChatList extends AppCompatActivity implements
                 FriendlyMessage.class,
                 R.layout.item_message,
                 MessageViewHolder.class,
-                mFirebaseDatabaseReference.child(MESSAGES_CHILD)) {
+                mFirebaseDatabaseReference.child(MESSAGES_CHILD).child(chatID)) {
 
             @Override
             protected FriendlyMessage parseSnapshot(DataSnapshot snapshot) {
@@ -263,7 +262,7 @@ public class ChatList extends AppCompatActivity implements
             public void onClick(View view) {
                 FriendlyMessage friendlyMessage = new FriendlyMessage(mMessageEditText.getText().toString(), mUsername,
                         mPhotoUrl);
-                mFirebaseDatabaseReference.child(MESSAGES_CHILD).push().setValue(friendlyMessage);
+                mFirebaseDatabaseReference.child(MESSAGES_CHILD).child(chatID).push().setValue(friendlyMessage);
                 mMessageEditText.setText("");
                 mFirebaseAnalytics.logEvent(MESSAGE_SENT_EVENT, null);
             }
