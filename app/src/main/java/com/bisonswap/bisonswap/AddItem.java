@@ -134,7 +134,7 @@ public class AddItem extends AppCompatActivity implements View.OnClickListener /
     private void uploadItem() {
         //if there is a file to upload
         if (filePath != null) {
-            pic_1 = "images/" + String.valueOf(System.currentTimeMillis());
+            pic_1 = String.valueOf(System.currentTimeMillis());
             itemName = ((EditText) findViewById(R.id.itemName)).getText().toString();
             itemDescription = ((EditText) findViewById(R.id.itemDescription)).getText().toString();
 
@@ -142,11 +142,11 @@ public class AddItem extends AppCompatActivity implements View.OnClickListener /
             progressDialog = new ProgressDialog(this);
             progressDialog.setTitle("Uploading");
             progressDialog.show();
-            sRef.child(pic_1).putFile(filePath)
+            sRef.child("images/" + pic_1).putFile(filePath)
                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                            Item item = new Item(email, itemCategory, itemDescription, itemName, pic_1, rating);
+                            Item item = new Item(email, itemCategory, itemDescription, itemName, "images/" + pic_1, rating);
                             dRef.child("items/" + pic_1).setValue(item);
                             Glide.with(AddItem.this)
                                     .using(new FirebaseImageLoader())
