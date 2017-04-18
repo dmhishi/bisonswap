@@ -47,12 +47,18 @@ public class AddItem extends AppCompatActivity implements View.OnClickListener /
     private FirebaseAuth mFirebaseAuth;
     private FirebaseUser mFirebaseUser;
 
-    private String itemName;
-    private String itemCategory;
-    private String itemCondition;
-    private String itemDescription;
-    private String imgName;
-    private String userEmail;
+//    private String itemName;
+//    private String itemCategory;
+//    private String itemCondition;
+//    private String itemDescription;
+//    private String imgName;
+//    private String userEmail;
+    public String email;
+    public String itemCategory;
+    public String itemDescription;
+    public String itemName;
+    public String pic_1;
+    public String rating;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,7 +103,7 @@ public class AddItem extends AppCompatActivity implements View.OnClickListener /
         ratingSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                itemCondition = adapterView.getItemAtPosition(i).toString();
+                rating = adapterView.getItemAtPosition(i).toString();
             }
 
             @Override
@@ -114,7 +120,7 @@ public class AddItem extends AppCompatActivity implements View.OnClickListener /
 
         sRef = FirebaseStorage.getInstance().getReference();
         dRef = FirebaseDatabase.getInstance().getReference();
-        userEmail = FirebaseAuth.getInstance().getCurrentUser().getEmail();
+        email = FirebaseAuth.getInstance().getCurrentUser().getEmail();
     }
 
     //method to show file chooser
@@ -128,7 +134,7 @@ public class AddItem extends AppCompatActivity implements View.OnClickListener /
     private void uploadItem() {
         //if there is a file to upload
         if (filePath != null) {
-            imgName = String.valueOf(System.currentTimeMillis());
+            pic_1 = "images/" + String.valueOf(System.currentTimeMillis());
             itemName = ((EditText) findViewById(R.id.itemName)).getText().toString();
             itemDescription = ((EditText) findViewById(R.id.itemDescription)).getText().toString();
 
@@ -136,15 +142,15 @@ public class AddItem extends AppCompatActivity implements View.OnClickListener /
             progressDialog = new ProgressDialog(this);
             progressDialog.setTitle("Uploading");
             progressDialog.show();
-            sRef.child("images/" + imgName).putFile(filePath)
+            sRef.child(pic_1).putFile(filePath)
                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                            Item item = new Item(itemName, itemCategory, itemCondition, itemDescription, imgName, userEmail);
-                            dRef.child("items/" + imgName).setValue(item);
+                            Item item = new Item(email, itemCategory, itemDescription, itemName, pic_1, rating);
+                            dRef.child("items/" + pic_1).setValue(item);
                             Glide.with(AddItem.this)
                                     .using(new FirebaseImageLoader())
-                                    .load(sRef.child("images").child(imgName))
+                                    .load(sRef.child("images").child(pic_1))
                                     .into(imageView);
                             //hiding the progress dialog
                             progressDialog.dismiss();
