@@ -21,7 +21,7 @@
             app:srcCompat="@drawable/real_bison" />
 
         <TextView
-            android:id="@+id/itemName"
+            android:id="@+id/iName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
@@ -33,7 +33,7 @@
             android:textStyle="bold"/>
 
         <TextView
-            android:id="@+id/itemDescription"
+            android:id="@+id/iDescription"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
@@ -47,7 +47,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity = "center"
-            android:text="Make Offer" />
+            android:text="Make Offer"
+            android:onClick="chat"/>
     </LinearLayout>
 
 </RelativeLayout>
