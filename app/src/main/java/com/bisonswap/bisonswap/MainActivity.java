@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -23,12 +24,23 @@ import com.firebase.ui.AddNewItem;
 import com.google.android.gms.auth.api.Auth;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private FirebaseAuth mFirebaseAuth;
     private FirebaseUser mFirebaseUser;
+    private FirebaseDatabase database;
+    private DatabaseReference myRef;
+    private ArrayList<String> references;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +56,54 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        database = FirebaseDatabase.getInstance();
+        myRef = database.getReference("items");
+        references = new ArrayList<>();
+        Query queryRef = myRef.orderByKey();
+
+        queryRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                for(DataSnapshot d: dataSnapshot.getChildren()) {
+                    Log.d("KEY:", d.getKey());
+                    references.add(d.getKey());
+                }
+                ArrayList<String> items = new ArrayList<>();
+                for(int i = 0; i < references.size(); i++) {
+                    items.add(references.get(i));
+
+                }
+
+                String[] refArray = new String[items.size()];
+                for(int i = 0; i < items.size(); i++) {
+                    // Populate refArray with the emails
+                    refArray[i] = items.get(i);
+                }
+
+                ListAdapter bisonAdapter = new CustomAdapter(MainActivity.this, refArray);
+                ListView bisonListView = (ListView) findViewById(R.id.bison_listview);
+                bisonListView.setAdapter(bisonAdapter);
+
+                //TODO: Change this to have to go to page
+                bisonListView.setOnItemClickListener(
+                        new AdapterView.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                String stuff = String.valueOf(parent.getItemAtPosition(position));
+                                startActivity(new Intent(MainActivity.this, ItemActivity.class));
+                            }
+
+                        }
+                );
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
         //useful if we need to add a floating button
         /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -63,23 +123,10 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        //For Item Page
-        String[] stuffs = {"Item1", "Item2", "Item3", "Item 4", "Item 5", "Item 6", "Item 7", "Item 8"};
-        ListAdapter bisonAdapter = new CustomAdapter(this, stuffs);
-        ListView bisonListView = (ListView) findViewById(R.id.bison_listview);
-        bisonListView.setAdapter(bisonAdapter);
 
-        //TODO: Change this to have to go to page
-        bisonListView.setOnItemClickListener(
-                new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        String stuff = String.valueOf(parent.getItemAtPosition(position));
-                        startActivity(new Intent(MainActivity.this, ItemActivity.class));
-                    }
 
-                }
-        );
+
+
 
     }
     @Override
