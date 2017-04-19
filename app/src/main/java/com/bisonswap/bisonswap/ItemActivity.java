@@ -47,9 +47,7 @@ public class ItemActivity extends AppCompatActivity {
 
         name = (TextView) findViewById(R.id.iName);
         description = (TextView) findViewById(R.id.iDescription);
-
-        name.setText("Destiny");
-
+        imageView = (ImageView) findViewById(R.id.iView);
 
         iRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -60,11 +58,10 @@ public class ItemActivity extends AppCompatActivity {
                 description.setText(itemDescription);
                 ownerEmail = dataSnapshot.child("email").getValue().toString();
                 imgRef = dataSnapshot.child("pic_1").getValue().toString();
-                /*Glide.with(ItemActivity.this)
+                Glide.with(ItemActivity.this)
                         .using(new FirebaseImageLoader())
                         .load(FirebaseStorage.getInstance().getReference().child(imgRef))
-                        .into(imageView);*/
-                Log.v("REF", imgRef);
+                        .into(imageView);
             }
 
             @Override
@@ -72,8 +69,6 @@ public class ItemActivity extends AppCompatActivity {
 
             }
         });
-
-        Log.d("ITEM", itemName +" "+itemDescription);
 
     }
 
