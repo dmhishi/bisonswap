@@ -22,7 +22,6 @@ import com.google.firebase.storage.StorageReference;
 import java.util.ArrayList;
 
 public class ItemActivity extends AppCompatActivity {
-
     DatabaseReference dRef;
     DatabaseReference iRef;
 
@@ -69,7 +68,6 @@ public class ItemActivity extends AppCompatActivity {
 
             }
         });
-
     }
 
     public void chat(View v) {
