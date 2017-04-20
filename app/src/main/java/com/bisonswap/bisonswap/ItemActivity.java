@@ -40,7 +40,7 @@ public class ItemActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item);
 
-        itemKey = "-Ki1Vr8l8T2YJEFgZXKI"; // getIntent().getStringExtra("itemKey");
+        itemKey = getIntent().getStringExtra("itemKey");
         dRef = FirebaseDatabase.getInstance().getReference();
         iRef = dRef.child("items").child(itemKey);
 

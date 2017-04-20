@@ -41,6 +41,9 @@ public class MainActivity extends AppCompatActivity
     private FirebaseDatabase database;
     private DatabaseReference myRef;
     private ArrayList<String> references;
+    private ArrayList<String> itemNames;
+    private ArrayList<String> imgRefArrayList;
+    private ArrayList<String> itemKeys;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +62,9 @@ public class MainActivity extends AppCompatActivity
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference("items");
         references = new ArrayList<>();
+        imgRefArrayList = new ArrayList<>();
+        itemNames = new ArrayList<>();
+        itemKeys = new ArrayList<>();
         Query queryRef = myRef.orderByKey();
 
         queryRef.addValueEventListener(new ValueEventListener() {
@@ -67,7 +73,14 @@ public class MainActivity extends AppCompatActivity
 
                 for(DataSnapshot d: dataSnapshot.getChildren()) {
                     Log.d("KEY:", d.getKey());
-                    references.add(d.getKey());
+                    String itemName = d.child("itemName").getValue().toString();
+//                    String itemDescription = d.child("itemDescription").getValue().toString();
+                    String imgRef = d.child("pic_1").getValue().toString();
+//
+                    itemKeys.add(d.getKey());
+                    itemNames.add(itemName);
+                    imgRefArrayList.add(imgRef);
+                    references.add(d.child("itemName").getValue().toString());
                 }
                 ArrayList<String> items = new ArrayList<>();
                 for(int i = 0; i < references.size(); i++) {
@@ -75,13 +88,13 @@ public class MainActivity extends AppCompatActivity
 
                 }
 
-                String[] refArray = new String[items.size()];
+                String[] nameArray = new String[items.size()];
                 for(int i = 0; i < items.size(); i++) {
                     // Populate refArray with the emails
-                    refArray[i] = items.get(i);
+                    nameArray[i] = items.get(i);
                 }
 
-                ListAdapter bisonAdapter = new CustomAdapter(MainActivity.this, refArray);
+                ListAdapter bisonAdapter = new CustomAdapter(MainActivity.this, nameArray);
                 ListView bisonListView = (ListView) findViewById(R.id.bison_listview);
                 bisonListView.setAdapter(bisonAdapter);
 
@@ -90,8 +103,9 @@ public class MainActivity extends AppCompatActivity
                         new AdapterView.OnItemClickListener() {
                             @Override
                             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                String itemKey = itemKeys.get(position);
                                 String stuff = String.valueOf(parent.getItemAtPosition(position));
-                                startActivity(new Intent(MainActivity.this, ItemActivity.class));
+                                startActivity((new Intent(MainActivity.this, ItemActivity.class)).putExtra("itemKey", itemKey));
                             }
 
                         }
