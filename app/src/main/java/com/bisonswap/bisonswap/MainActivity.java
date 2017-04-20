@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity
                 for(DataSnapshot d: dataSnapshot.getChildren()) {
                     Log.d("KEY:", d.getKey());
                     String itemName = d.child("itemName").getValue().toString();
-//                    String itemDescription = d.child("itemDescription").getValue().toString();
+                    String itemDescription = d.child("itemDescription").getValue().toString();
                     String imgRef = d.child("pic_1").getValue().toString();
 //
                     itemKeys.add(d.getKey());
