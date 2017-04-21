@@ -1,6 +1,7 @@
 package com.bisonswap.bisonswap;
 
 import com.google.firebase.database.IgnoreExtraProperties;
+import com.google.firebase.storage.StorageReference;
 
 /**
  * Created by Destiny on 3/25/2017.
@@ -15,6 +16,8 @@ public class Item {
     public String itemName;
     public String pic_1;
     public String rating;
+    public String arrived;
+    public String shipped;
 //    public String name;
 //    public String category;
 //    public String condition;
@@ -31,6 +34,8 @@ public class Item {
         this.itemName = itemName;
         this.pic_1 = pic_1;
         this.rating = rating;
+        this.shipped = "0";
+        this.arrived = "0";;
 //        this.name = name;
 //        this.category = category;
 //        this.condition = rating;

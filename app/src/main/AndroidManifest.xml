@@ -28,8 +28,10 @@
         <!-- ======= -->
         <activity android:name=".ItemActivity" />
         <!-- &gt;>>>>>> 6998030cd3c7e15a5d7a025304dd830f42620a0f -->
-        <!--<activity android:name=".test"></activity>-->
-        <activity android:name=".ChatPick"></activity>
+        <!-- <activity android:name=".test"></activity> -->
+        <activity android:name=".ChatPick" />
+        <activity android:name=".MyItems" />
+        <activity android:name=".LikedItemList"></activity>
     </application>
 
 </manifest>

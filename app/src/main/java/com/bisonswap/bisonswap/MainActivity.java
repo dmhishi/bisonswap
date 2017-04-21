@@ -16,11 +16,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.firebase.ui.AddNewItem;
+import com.firebase.ui.storage.images.FirebaseImageLoader;
 import com.google.android.gms.auth.api.Auth;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -30,6 +33,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
 
 import java.util.ArrayList;
 
@@ -103,6 +107,12 @@ public class MainActivity extends AppCompatActivity
                         new AdapterView.OnItemClickListener() {
                             @Override
                             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                ImageView imageView = (ImageView) findViewById(R.id.bisonImage);
+                                String imgRef = imgRefArrayList.get(position);
+                                Glide.with(MainActivity.this)
+                                        .using(new FirebaseImageLoader())
+                                        .load(FirebaseStorage.getInstance().getReference().child(imgRef))
+                                        .into(imageView);
                                 String itemKey = itemKeys.get(position);
                                 String stuff = String.valueOf(parent.getItemAtPosition(position));
                                 startActivity((new Intent(MainActivity.this, ItemActivity.class)).putExtra("itemKey", itemKey));
@@ -185,7 +195,7 @@ public class MainActivity extends AppCompatActivity
             startActivity(new Intent(this, MainActivity.class));
         } else if (id == R.id.nav_add_new_item) {
             startActivity(new Intent(this, AddItem.class));
-        } else if (id == R.id.messages) {
+        } else if (id == R.id.my_items) {
             startActivity(new Intent(this, ChatList.class));
         } else if (id == R.id.nav_manage) {
 
@@ -201,9 +211,6 @@ public class MainActivity extends AppCompatActivity
         }
         else if (id == R.id.chat) {
             startActivity(new Intent(this, Chat.class));
-        }
-        else if(id == R.id.chat_list) {
-            startActivity(new Intent(this, ChatList.class));
         }
         else if(id == R.id.chat_pick) {
             startActivity(new Intent(this, ChatPick.class));
