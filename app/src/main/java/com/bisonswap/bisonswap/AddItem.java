@@ -53,6 +53,7 @@ public class AddItem extends AppCompatActivity implements View.OnClickListener /
 //    private String itemDescription;
 //    private String imgName;
 //    private String userEmail;
+    public int arrived;
     public String email;
     public String itemCategory;
     public String itemDescription;
@@ -142,15 +143,15 @@ public class AddItem extends AppCompatActivity implements View.OnClickListener /
             progressDialog = new ProgressDialog(this);
             progressDialog.setTitle("Uploading");
             progressDialog.show();
-            sRef.child("images/" + pic_1).putFile(filePath)
+            sRef.child(pic_1).putFile(filePath)
                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                            Item item = new Item(email, itemCategory, itemDescription, itemName, "images/" + pic_1, rating);
+                            Item item = new Item(0, email, itemCategory, itemDescription, itemName, pic_1, 0, rating, 0, FirebaseAuth.getInstance().getCurrentUser().getUid());
                             dRef.child("items/" + pic_1).setValue(item);
                             Glide.with(AddItem.this)
                                     .using(new FirebaseImageLoader())
-                                    .load(sRef.child("images").child(pic_1))
+                                    .load(sRef.child(pic_1))
                                     .into(imageView);
                             //hiding the progress dialog
                             progressDialog.dismiss();

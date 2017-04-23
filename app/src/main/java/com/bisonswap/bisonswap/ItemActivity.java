@@ -58,8 +58,9 @@ public class ItemActivity extends AppCompatActivity {
                 ownerEmail = dataSnapshot.child("email").getValue().toString();
                 imgRef = dataSnapshot.child("pic_1").getValue().toString();
                 Glide.with(ItemActivity.this)
-                        .using(new FirebaseImageLoader())
-                        .load(FirebaseStorage.getInstance().getReference().child(imgRef))
+                        //.using(new FirebaseImageLoader())
+                        // This load will have to change based on URL...
+                        .load("http://bisonswap.com/uploads/" + imgRef)
                         .into(imageView);
             }
 

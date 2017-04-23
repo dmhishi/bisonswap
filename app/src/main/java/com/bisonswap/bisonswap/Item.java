@@ -16,8 +16,10 @@ public class Item {
     public String itemName;
     public String pic_1;
     public String rating;
-    public String arrived;
-    public String shipped;
+    public int arrived;
+    public int shipped;
+    public int rated;
+    public String uid;
 //    public String name;
 //    public String category;
 //    public String condition;
@@ -25,17 +27,19 @@ public class Item {
 //    public String imgName;
 //    public String ownerEmail;
 
-    public Item(String email, String itemCategory, String itemDescription, String itemName, String pic_1, String rating)
+    public Item(int arrived, String email, String itemCategory, String itemDescription, String itemName, String pic_1, int rated, String rating, int shipped, String uid)
     {
+        this.arrived = arrived;
         this.date = String.valueOf(System.currentTimeMillis());
         this.email = email;
         this.itemCategory = itemCategory;
         this.itemDescription = itemDescription;
         this.itemName = itemName;
         this.pic_1 = pic_1;
+        this.rated = rated;
         this.rating = rating;
-        this.shipped = "0";
-        this.arrived = "0";;
+        this.shipped = shipped;
+        this.uid = uid;
 //        this.name = name;
 //        this.category = category;
 //        this.condition = rating;
