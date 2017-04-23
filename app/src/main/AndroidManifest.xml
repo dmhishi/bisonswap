@@ -31,7 +31,8 @@
         <!-- <activity android:name=".test"></activity> -->
         <activity android:name=".ChatPick" />
         <activity android:name=".MyItems" />
-        <activity android:name=".LikedItemList"></activity>
+        <activity android:name=".LikedItemList" />
+        <activity android:name=".MyOffers"></activity>
     </application>
 
 </manifest>

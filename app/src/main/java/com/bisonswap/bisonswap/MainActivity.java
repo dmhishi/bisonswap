@@ -196,7 +196,7 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_add_new_item) {
             startActivity(new Intent(this, AddItem.class));
         } else if (id == R.id.my_items) {
-            startActivity(new Intent(this, ChatList.class));
+            startActivity(new Intent(this, MyItems.class));
         } else if (id == R.id.nav_manage) {
 
         } else if (id == R.id.nav_share) {
@@ -214,6 +214,9 @@ public class MainActivity extends AppCompatActivity
         }
         else if(id == R.id.chat_pick) {
             startActivity(new Intent(this, ChatPick.class));
+        }
+        else if(id == R.id.my_offers) {
+            startActivity(new Intent(this, MyOffers.class));
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
