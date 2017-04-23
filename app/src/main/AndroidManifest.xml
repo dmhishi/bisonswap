@@ -32,7 +32,7 @@
         <activity android:name=".ChatPick" />
         <activity android:name=".MyItems" />
         <activity android:name=".LikedItemList" />
-        <activity android:name=".MyOffers"></activity>
+        <activity android:name=".MyOffers" />
     </application>
 
 </manifest>

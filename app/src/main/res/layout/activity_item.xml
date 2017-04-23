@@ -51,6 +51,11 @@
             android:gravity = "center"
             android:text="Make Offer"
             android:onClick="chat"/>
+
+        <ListView
+            android:id="@+id/offer_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
     </LinearLayout>
 
 </RelativeLayout>
