@@ -33,6 +33,7 @@
         <activity android:name=".MyItems" />
         <activity android:name=".LikedItemList" />
         <activity android:name=".MyOffers" />
+        <activity android:name=".MakeOffer"></activity>
     </application>
 
 </manifest>

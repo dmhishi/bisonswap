@@ -50,7 +50,7 @@
             android:layout_height="wrap_content"
             android:gravity = "center"
             android:text="Make Offer"
-            android:onClick="chat"/>
+            android:onClick="offer"/>
 
         <ListView
             android:id="@+id/offer_view"

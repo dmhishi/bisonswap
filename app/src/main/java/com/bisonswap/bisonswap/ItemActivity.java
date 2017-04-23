@@ -145,7 +145,7 @@ public class ItemActivity extends AppCompatActivity {
                             .load("http://bisonswap.com/uploads/" + imgRef)
                             .into(imageView);
                     // Do not display the offers this item has received if the user does not own it
-                    offerView.setVisibility(View.GONE);
+                    //offerView.setVisibility(View.GONE);
                 }
             }
 
@@ -156,6 +156,11 @@ public class ItemActivity extends AppCompatActivity {
         });
     }
 
+    public void offer(View v) {
+        Intent offer = new Intent(this, MakeOffer.class);
+        offer.putExtra("itemKey", itemKey);
+        startActivity(offer);
+    }
     public void chat(View v) {
         Intent chat = new Intent(this, Chat.class);
         chat.putExtra("ownerEmail", ownerEmail);
