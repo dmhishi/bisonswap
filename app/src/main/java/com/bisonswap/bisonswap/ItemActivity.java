@@ -51,6 +51,7 @@ public class ItemActivity extends AppCompatActivity {
     ArrayList<String> offeredItemUid;
     ArrayList<String> offeredBaseKey;
     ArrayList<String> offerEmails;
+    ArrayList<String> offerPics;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -112,17 +113,20 @@ public class ItemActivity extends AppCompatActivity {
                             String offer_uid = offer.child("uid").getValue().toString();
                             String offer_refKey = offer.getKey().toString();
                             String offer_email = offer.child("email").getValue().toString();
+                            String offer_pic_1 = offer.child("pic_1").getValue().toString();
                             offeredItemName.add(offer_itemName);
                             offeredItemKey.add(offer_itemKey);
                             offeredItemUid.add(offer_uid);
                             offeredBaseKey.add(offer_refKey);
                             offerEmails.add(offer_email);
+                            offerPics.add(offer_pic_1);
                             // TODO: Get the offered items picture
                         }
-                        String[] nameArray = new String[offeredItemName.size()];
+
+                        ItemData[] nameArray = new ItemData[offeredItemName.size()];
                         for(int i = 0; i < offeredItemName.size(); i++) {
                             // Populate nameArray with item names
-                            nameArray[i] = offeredItemName.get(i);
+                            nameArray[i] = new ItemData(offeredItemName.get(i), offerPics.get(i));
                         }
                         // TODO: Make a custom activity to accept or reject offers
                         ListAdapter bisonAdapter = new CustomAdapter(ItemActivity.this, nameArray);

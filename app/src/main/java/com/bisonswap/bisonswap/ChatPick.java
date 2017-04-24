@@ -63,10 +63,10 @@ public class ChatPick extends AppCompatActivity {
                         }
                     }
                 }
-                String[] refArray = new String[emails.size()];
+                ItemData[] refArray = new ItemData[emails.size()];
                 for(int i = 0; i < emails.size(); i++) {
                     // Populate refArray with the emails
-                    refArray[i] = emails.get(i);
+                    refArray[i] = new ItemData(emails.get(i), "bison");
                 }
                 // Populate the list view with emails
                 ListAdapter bisonAdapter = new CustomAdapter(ChatPick.this, refArray);

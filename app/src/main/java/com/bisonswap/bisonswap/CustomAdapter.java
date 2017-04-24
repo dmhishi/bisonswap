@@ -32,8 +32,9 @@ class CustomAdapter extends ArrayAdapter<ItemData>{
         ItemData singleItem = getItem(position);
         TextView bisonText = (TextView) customView.findViewById(R.id.bisonItemText);
         ImageView bisonImage = (ImageView) customView.findViewById(R.id.bisonImage);
-
         bisonText.setText(singleItem.name);
+        if(singleItem.name.equals("bison"))
+            singleItem.ref = "http://bisonswap.com/img/logo-lq.png";
         Glide.with(getContext())
                 .load(singleItem.ref)
                 .into(bisonImage);

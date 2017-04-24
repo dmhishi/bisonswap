@@ -85,10 +85,10 @@ public class MakeOffer extends AppCompatActivity {
                     items.add(references.get(i));
                 }
 
-                String[] nameArray = new String[items.size()];
+                ItemData[] nameArray = new ItemData[items.size()];
                 for(int i = 0; i < items.size(); i++) {
                     // Populate refArray with the emails
-                    nameArray[i] = items.get(i);
+                    nameArray[i] = new ItemData(items.get(i), "bison");
                 }
                 final ListAdapter bisonAdapter = new CustomAdapter(MakeOffer.this, nameArray);
                 ListView bisonListView = (ListView) findViewById(R.id.item_view);
