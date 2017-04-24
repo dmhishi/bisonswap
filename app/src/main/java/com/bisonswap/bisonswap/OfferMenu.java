@@ -64,6 +64,12 @@ public class OfferMenu extends AppCompatActivity {
         shipped = (Button) findViewById(R.id.itemShipped);
         received = (Button) findViewById(R.id.itemReceived);
 
+        accept.setVisibility(View.INVISIBLE);
+        reject.setVisibility(View.INVISIBLE);
+        extend.setVisibility(View.INVISIBLE);
+        shipped.setVisibility(View.INVISIBLE);
+        received.setVisibility(View.INVISIBLE);
+
         // Get the extra information passed from the item activity
         int ownsItem = Integer.parseInt(getIntent().getStringExtra("ownsItem").toString());
         String itemKey = getIntent().getStringExtra("itemKey").toString();
@@ -74,12 +80,15 @@ public class OfferMenu extends AppCompatActivity {
             case 0:
                 // Case 0: This person owns the item
 
+                accept.setVisibility(View.VISIBLE);
+                reject.setVisibility(View.VISIBLE);
                 // Hide the extend button
-                extend.setVisibility(View.GONE);
+//                extend.setVisibility(View.GONE);
 
             case 1:
                 // Case 1: This person has an offer open on the item
 
+                extend.setVisibility(View.VISIBLE);
                 // Hide the accept and reject buttons
 //                accept.setVisibility(View.GONE);
 //                reject.setVisibility(View.GONE);
@@ -89,8 +98,47 @@ public class OfferMenu extends AppCompatActivity {
         }
     }
 
-    public void extendOffer() {
+    // Extend the offer by resetting the date to the current time
+    public void extendOffer(View v) {
+        int ownsItem = Integer.parseInt(getIntent().getStringExtra("ownsItem").toString());
+        final String itemKey = getIntent().getStringExtra("itemKey").toString();
+        final String offerKey = getIntent().getStringExtra("offerItemKey").toString();
+        database = FirebaseDatabase.getInstance();
+        // Get the offer reference
+        myRef = database.getReference("items").child(itemKey).child("offer");
+        Query queryRef = myRef.orderByKey();
 
+        // Note that this listener is not the typical one used in the rest of the app.
+        // This is because the ValueEventListener was stuck in an infinite loop constantly
+        // updating the date.
+        queryRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                HashMap<String, Object> updates = new HashMap<>();
+                for(DataSnapshot d: dataSnapshot.getChildren()) {
+                    // Iterate through values in the offer reference and set the date to the current time.
+                    updates.put("accepted", d.child("arrived").getValue());
+                    updates.put("arrived", Integer.parseInt(d.child("arrived").getValue().toString()));
+                    updates.put("date", String.valueOf(System.currentTimeMillis()));
+                    updates.put("email", d.child("email").getValue().toString());
+                    updates.put("item", d.child("item").getValue().toString());
+                    updates.put("itemName", d.child("itemName").getValue().toString());
+                    updates.put("rated", d.child("rated").getValue());
+                    updates.put("shipped", d.child("shipped").getValue());
+                    updates.put("uid", d.child("uid").getValue().toString());
+                }
+                Map<String, Object> childUpdates = new HashMap<>();
+                childUpdates.put("items/" + itemKey + "/offer/" + offerKey, updates);
+                // Update the database with the new date
+                database.getReference().updateChildren(childUpdates);
+                return;
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
 
     // Update items/itemKey/offer/offerKey and change accepted to 1.
