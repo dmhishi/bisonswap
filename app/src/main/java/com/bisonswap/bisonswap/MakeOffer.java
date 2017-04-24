@@ -83,7 +83,6 @@ public class MakeOffer extends AppCompatActivity {
                 ArrayList<String> items = new ArrayList<>();
                 for(int i = 0; i < references.size(); i++) {
                     items.add(references.get(i));
-
                 }
 
                 String[] nameArray = new String[items.size()];
@@ -91,8 +90,7 @@ public class MakeOffer extends AppCompatActivity {
                     // Populate refArray with the emails
                     nameArray[i] = items.get(i);
                 }
-
-                ListAdapter bisonAdapter = new CustomAdapter(MakeOffer.this, nameArray);
+                final ListAdapter bisonAdapter = new CustomAdapter(MakeOffer.this, nameArray);
                 ListView bisonListView = (ListView) findViewById(R.id.item_view);
                 bisonListView.setAdapter(bisonAdapter);
 

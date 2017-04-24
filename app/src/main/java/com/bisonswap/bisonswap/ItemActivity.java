@@ -42,12 +42,14 @@ public class ItemActivity extends AppCompatActivity {
     ImageView imageView;
     TextView name;
     TextView description;
+    TextView offerText;
     Button makeOffer;
     ListView offerView;
 
     ArrayList<String> offeredItemKey;
     ArrayList<String> offeredItemName;
     ArrayList<String> offeredItemUid;
+    ArrayList<String> offeredBaseKey;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,16 +66,21 @@ public class ItemActivity extends AppCompatActivity {
 
         name = (TextView) findViewById(R.id.iName);
         description = (TextView) findViewById(R.id.iDescription);
+        offerText = (TextView) findViewById(R.id.offerText);
         imageView = (ImageView) findViewById(R.id.iView);
         makeOffer = (Button) findViewById(R.id.makeOffer);
 
         offeredItemKey = new ArrayList<>();
         offeredItemName = new ArrayList<>();
         offeredItemUid = new ArrayList<>();
+        // Holds the offer.key value
+        offeredBaseKey = new ArrayList<>();
 
         iRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                // Hide the offer textview unless you own it
+                offerText.setVisibility(View.GONE);
                 if(currentUid.equals(dataSnapshot.child("uid").getValue().toString())) {
                     // This will trigger if the current user owns the item they are viewing
                     itemName = dataSnapshot.child("itemName").getValue().toString();
@@ -92,14 +99,18 @@ public class ItemActivity extends AppCompatActivity {
 
                     // Populate the offers list view
                     if(dataSnapshot.child("offer").exists()) {
+                        // Show the offer textview if there are offers for this item and you own it
+                        offerText.setVisibility(View.VISIBLE);
                         // If there are offers for this item display them
                         for(DataSnapshot offer: dataSnapshot.child("offer").getChildren()) {
                             String offer_itemName = offer.child("itemName").getValue().toString();
                             String offer_itemKey = offer.child("item").getValue().toString();
                             String offer_uid = offer.child("uid").getValue().toString();
+                            String offer_refKey = offer.getKey().toString();
                             offeredItemName.add(offer_itemName);
                             offeredItemKey.add(offer_itemKey);
                             offeredItemUid.add(offer_uid);
+                            offeredBaseKey.add(offer_refKey);
                             // TODO: Get the offered items picture
                         }
                         String[] nameArray = new String[offeredItemName.size()];
@@ -124,8 +135,14 @@ public class ItemActivity extends AppCompatActivity {
                                                 .load("http://bisonswap.com/uploads/" + imgRef)
                                                 .into(imageView);
                                         String o_itemKey = offeredItemKey.get(position);
+                                        String o_baseKey = offeredBaseKey.get(position);
                                         String stuff = String.valueOf(parent.getItemAtPosition(position));
-                                        startActivity((new Intent(ItemActivity.this, ItemActivity.class)).putExtra("itemKey", o_itemKey));
+                                        Intent offer_menu = new Intent(ItemActivity.this, OfferMenu.class);
+                                        offer_menu.putExtra("ownsItem", "0");
+                                        offer_menu.putExtra("offerItemKey", o_baseKey);
+                                        offer_menu.putExtra("itemKey", itemKey);
+                                        startActivity(offer_menu);
+//                                        startActivity((new Intent(ItemActivity.this, OfferMenu.class)).putExtra("itemKey", o_itemKey));
                                     }
 
                                 }

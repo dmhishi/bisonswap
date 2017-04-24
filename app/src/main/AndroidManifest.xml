@@ -33,7 +33,8 @@
         <activity android:name=".MyItems" />
         <activity android:name=".LikedItemList" />
         <activity android:name=".MyOffers" />
-        <activity android:name=".MakeOffer"></activity>
+        <activity android:name=".MakeOffer" />
+        <activity android:name=".OfferMenu"></activity>
     </application>
 
 </manifest>

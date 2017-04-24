@@ -115,7 +115,6 @@ public class MyOffers extends AppCompatActivity {
                 ListView bisonListView = (ListView) findViewById(R.id.item_view);
                 bisonListView.setAdapter(bisonAdapter);
 
-                //TODO: Change this to have to go to page
                 bisonListView.setOnItemClickListener(
                         new AdapterView.OnItemClickListener() {
                             @Override
