@@ -20,6 +20,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -51,24 +52,34 @@ public class OfferMenu extends AppCompatActivity {
     private Button extend;
     private Button shipped;
     private Button received;
+    private Button feedback;
+    private Button chat;
+
+    private ImageView item_img;
+    private TextView item_name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_offer_menu);
 
-        // Get all the buttons used on this page
+        // Get all the buttons and other stuff used on this page
         accept = (Button) findViewById(R.id.acceptOffer);
         reject = (Button) findViewById(R.id.rejectOffer);
         extend = (Button) findViewById(R.id.extendOffer);
         shipped = (Button) findViewById(R.id.itemShipped);
         received = (Button) findViewById(R.id.itemReceived);
+        feedback = (Button) findViewById(R.id.itemFeedback);
+        chat = (Button) findViewById(R.id.chat);
+        item_img = (ImageView) findViewById(R.id.iView);
+        item_name = (TextView) findViewById(R.id.iName);
 
         accept.setVisibility(View.INVISIBLE);
         reject.setVisibility(View.INVISIBLE);
         extend.setVisibility(View.INVISIBLE);
         shipped.setVisibility(View.INVISIBLE);
         received.setVisibility(View.INVISIBLE);
+        feedback.setVisibility(View.INVISIBLE);
 
         // Get the extra information passed from the item activity
         int ownsItem = Integer.parseInt(getIntent().getStringExtra("ownsItem").toString());
@@ -82,8 +93,34 @@ public class OfferMenu extends AppCompatActivity {
 
                 accept.setVisibility(View.VISIBLE);
                 reject.setVisibility(View.VISIBLE);
+                shipped.setVisibility(View.VISIBLE);
+                received.setVisibility(View.VISIBLE);
+                feedback.setVisibility(View.VISIBLE);
+
                 // Hide the extend button
 //                extend.setVisibility(View.GONE);
+                // Get the offered item's reference
+                // offerBaseKey = items/offerBaseKey
+                String offerBaseKey = getIntent().getStringExtra("offerKey").toString();
+                database = FirebaseDatabase.getInstance();
+                myRef = database.getReference().child("items").child(offerBaseKey);
+                myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        // Use this to populate the ImageView and TextView
+                        item_name.setText(dataSnapshot.child("itemName").getValue().toString());
+                        Glide.with(OfferMenu.this)
+                                .load("http://bisonswap.com/uploads/" + dataSnapshot.child("pic_1").getValue().toString())
+                                .into(item_img);
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+                break;
 
             case 1:
                 // Case 1: This person has an offer open on the item
@@ -92,10 +129,20 @@ public class OfferMenu extends AppCompatActivity {
                 // Hide the accept and reject buttons
 //                accept.setVisibility(View.GONE);
 //                reject.setVisibility(View.GONE);
+                break;
 
             default:
                 // Do nothing
+                break;
         }
+    }
+
+    // Open up chat with the person offering the item
+    public void chat(View v) {
+        Intent chatIntent = new Intent(this, Chat.class);
+        String ownerEmail = getIntent().getStringExtra("ownerEmail");
+        chatIntent.putExtra("ownerEmail", ownerEmail);
+        startActivity(chatIntent);
     }
 
     // Extend the offer by resetting the date to the current time
@@ -119,7 +166,7 @@ public class OfferMenu extends AppCompatActivity {
                     // Iterate through values in the offer reference and set the date to the current time.
                     updates.put("accepted", d.child("arrived").getValue());
                     updates.put("arrived", Integer.parseInt(d.child("arrived").getValue().toString()));
-                    updates.put("date", String.valueOf(System.currentTimeMillis()));
+                    updates.put("date", System.currentTimeMillis());
                     updates.put("email", d.child("email").getValue().toString());
                     updates.put("item", d.child("item").getValue().toString());
                     updates.put("itemName", d.child("itemName").getValue().toString());
@@ -195,11 +242,55 @@ public class OfferMenu extends AppCompatActivity {
         myRef.removeValue();
     }
 
-    public void itemShipped() {
+    // Update your item's shipping status
+    public void itemShipped(View v) {
+        int ownsItem = Integer.parseInt(getIntent().getStringExtra("ownsItem").toString());
+        final String itemKey = getIntent().getStringExtra("itemKey").toString();
+        final String offerKey = getIntent().getStringExtra("offerItemKey").toString();
+        Log.d("ITEM KEY", itemKey);
+        database = FirebaseDatabase.getInstance();
+        // Get the offer reference
+        DatabaseReference shippedRef = database.getReference("items").child(itemKey);
+//        myRef = database.getReference("items").child(itemKey);
+        Query queryRef = shippedRef.orderByKey();
+        queryRef.addValueEventListener(new ValueEventListener() {
 
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                dataSnapshot.child("shipped").getRef().setValue(1);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
 
-    public void itemReceived() {
+    // Set the value of arrived in items/itemKey/offer/offerKey to 1
+    public void itemReceived(View v) {
+        int ownsItem = Integer.parseInt(getIntent().getStringExtra("ownsItem").toString());
+        final String itemKey = getIntent().getStringExtra("itemKey").toString();
+        final String offerKey = getIntent().getStringExtra("offerItemKey").toString();
+        database = FirebaseDatabase.getInstance();
+        // Get the offer reference
+        myRef = database.getReference("items").child(itemKey).child("offer").child(offerKey);
+        Query queryRef = myRef.orderByKey();
+        queryRef.addValueEventListener(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                dataSnapshot.child("arrived").getRef().setValue(1);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    public void provideFeedback(View v) {
 
     }
 }

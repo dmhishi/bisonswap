@@ -5,7 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.bisonswap.bisonswap.OfferMenu">
-
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -42,15 +45,15 @@
             android:layout_alignParentStart="true" />
 
         <Button
-            android:id="@+id/extendOffer"
+            android:id="@+id/chat"
             android:layout_marginTop="20dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity = "center"
-            android:text="Extend Offer"
-            android:onClick="extendOffer"/>
+            android:text="Chat with user"
+            android:onClick="chat"/>
 
         <Button
             android:id="@+id/acceptOffer"
@@ -96,10 +99,33 @@
             android:text="Item Arrived"
             android:onClick="itemReceived"/>
 
+        <Button
+            android:id="@+id/itemFeedback"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity = "center"
+            android:text="Provide Feedback"
+            android:onClick="provideFeedback"/>
+
+        <Button
+            android:id="@+id/extendOffer"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity = "center"
+            android:text="Extend Offer"
+            android:onClick="extendOffer"/>
+
         <ListView
             android:id="@+id/offer_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </LinearLayout>
+    </ScrollView>
 
 </RelativeLayout>

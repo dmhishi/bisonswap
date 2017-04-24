@@ -49,6 +49,7 @@ public class MyOffers extends AppCompatActivity {
     private ArrayList<String> itemKeys;
     private ArrayList<String> offerKeys;
     private ArrayList<String> offeredItems;
+    private ArrayList<String> offerBaseKeys;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,6 +65,7 @@ public class MyOffers extends AppCompatActivity {
         references = new ArrayList<>();
         offerKeys = new ArrayList<>();
         offeredItems = new ArrayList<>();
+        offerBaseKeys = new ArrayList<>();
         Query queryRef = itemRef.orderByKey();
 
         queryRef.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -84,6 +86,7 @@ public class MyOffers extends AppCompatActivity {
                                 // Add the item key and the offered item's name to arraylists
                                 offerKeys.add(offer.child("item").getValue().toString());
                                 offeredItems.add(offer.child("itemName").getValue().toString());
+                                offerBaseKeys.add(offer.getKey());
                             }
                         }
                         String itemName = d.child("itemName").getValue().toString();
@@ -114,7 +117,6 @@ public class MyOffers extends AppCompatActivity {
                 ListAdapter bisonAdapter = new CustomAdapter(MyOffers.this, nameArray);
                 ListView bisonListView = (ListView) findViewById(R.id.item_view);
                 bisonListView.setAdapter(bisonAdapter);
-
                 bisonListView.setOnItemClickListener(
                         new AdapterView.OnItemClickListener() {
                             @Override
@@ -128,7 +130,12 @@ public class MyOffers extends AppCompatActivity {
                                         .into(imageView);
                                 String itemKey = itemKeys.get(position);
                                 String stuff = String.valueOf(parent.getItemAtPosition(position));
-                                startActivity((new Intent(MyOffers.this, ItemActivity.class)).putExtra("itemKey", itemKey));
+                                Intent o_Menu = new Intent(MyOffers.this, OfferMenu.class);
+                                o_Menu.putExtra("ownsItem", "1");
+                                o_Menu.putExtra("offerItemKey", offerBaseKeys.get(position));
+                                o_Menu.putExtra("itemKey", itemKey);
+                                startActivity(o_Menu);
+//                                startActivity((new Intent(MyOffers.this, ItemActivity.class)).putExtra("itemKey", itemKey));
                             }
 
                         }

@@ -50,6 +50,7 @@ public class ItemActivity extends AppCompatActivity {
     ArrayList<String> offeredItemName;
     ArrayList<String> offeredItemUid;
     ArrayList<String> offeredBaseKey;
+    ArrayList<String> offerEmails;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +76,8 @@ public class ItemActivity extends AppCompatActivity {
         offeredItemUid = new ArrayList<>();
         // Holds the offer.key value
         offeredBaseKey = new ArrayList<>();
+        // Holds the offer emails
+        offerEmails = new ArrayList<>();
 
         // Changed this listener... now the only downside is that a rejected item will not disappear until the activity is reloaded
         iRef.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -108,10 +111,12 @@ public class ItemActivity extends AppCompatActivity {
                             String offer_itemKey = offer.child("item").getValue().toString();
                             String offer_uid = offer.child("uid").getValue().toString();
                             String offer_refKey = offer.getKey().toString();
+                            String offer_email = offer.child("email").getValue().toString();
                             offeredItemName.add(offer_itemName);
                             offeredItemKey.add(offer_itemKey);
                             offeredItemUid.add(offer_uid);
                             offeredBaseKey.add(offer_refKey);
+                            offerEmails.add(offer_email);
                             // TODO: Get the offered items picture
                         }
                         String[] nameArray = new String[offeredItemName.size()];
@@ -142,6 +147,8 @@ public class ItemActivity extends AppCompatActivity {
                                         offer_menu.putExtra("ownsItem", "0");
                                         offer_menu.putExtra("offerItemKey", o_baseKey);
                                         offer_menu.putExtra("itemKey", itemKey);
+                                        offer_menu.putExtra("offerKey", o_itemKey);
+                                        offer_menu.putExtra("ownerEmail", offerEmails.get(position));
                                         startActivity(offer_menu);
 //                                        startActivity((new Intent(ItemActivity.this, OfferMenu.class)).putExtra("itemKey", o_itemKey));
                                     }
