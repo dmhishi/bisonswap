@@ -6,7 +6,7 @@
     android:layout_height="150dp">
 
     <ImageView
-        android:id="@+id/imgView"
+        android:id="@+id/itView"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:padding="16dp"
@@ -29,7 +29,7 @@
             android:text="This is the description." />
 
         <TextView
-            android:id="@+id/itDescr"
+            android:id="@+id/itDescription"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"

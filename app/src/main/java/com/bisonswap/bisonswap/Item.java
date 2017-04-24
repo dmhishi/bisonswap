@@ -27,6 +27,11 @@ public class Item {
 //    public String imgName;
 //    public String ownerEmail;
 
+    public Item()
+    {
+
+    }
+
     public Item(int arrived, String email, String itemCategory, String itemDescription, String itemName, String pic_1, int rated, String rating, int shipped, String uid)
     {
         this.arrived = arrived;

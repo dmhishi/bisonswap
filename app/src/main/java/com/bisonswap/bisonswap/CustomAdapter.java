@@ -15,10 +15,12 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-class CustomAdapter extends ArrayAdapter<String>{
+import com.bumptech.glide.Glide;
 
-    public CustomAdapter( Context context,  String[] stuffs) {
-        super(context, R.layout.custom_row,stuffs);
+class CustomAdapter extends ArrayAdapter<ItemData>{
+
+    public CustomAdapter( Context context,  ItemData[] items) {
+        super(context, R.layout.custom_row, items);
     }
 
     @NonNull
@@ -27,12 +29,14 @@ class CustomAdapter extends ArrayAdapter<String>{
         LayoutInflater bisonInflater = LayoutInflater.from(getContext());
         View customView = bisonInflater.inflate(R.layout.custom_row, parent, false);
 
-        String singleItem = getItem(position);
+        ItemData singleItem = getItem(position);
         TextView bisonText = (TextView) customView.findViewById(R.id.bisonItemText);
         ImageView bisonImage = (ImageView) customView.findViewById(R.id.bisonImage);
 
-        bisonText.setText(singleItem);
-        bisonImage.setImageResource(R.drawable.real_bison);
+        bisonText.setText(singleItem.name);
+        Glide.with(getContext())
+                .load(singleItem.ref)
+                .into(bisonImage);
         return customView;
     }
 }

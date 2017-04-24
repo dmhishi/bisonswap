@@ -2,8 +2,6 @@ package com.bisonswap.bisonswap;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -15,16 +13,12 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.firebase.ui.AddNewItem;
 import com.firebase.ui.storage.images.FirebaseImageLoader;
-import com.google.android.gms.auth.api.Auth;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -34,7 +28,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
-
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity
@@ -48,6 +41,7 @@ public class MainActivity extends AppCompatActivity
     private ArrayList<String> itemNames;
     private ArrayList<String> imgRefArrayList;
     private ArrayList<String> itemKeys;
+    private ArrayList<ItemData> itemDataList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +57,7 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        itemDataList = new ArrayList<>();
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference("items");
         references = new ArrayList<>();
@@ -85,20 +80,22 @@ public class MainActivity extends AppCompatActivity
                     itemNames.add(itemName);
                     imgRefArrayList.add(imgRef);
                     references.add(d.child("itemName").getValue().toString());
+
+                    itemDataList.add(new ItemData(itemName, "http://bisonswap.com/uploads"+imgRef));
                 }
-                ArrayList<String> items = new ArrayList<>();
+                ArrayList<ItemData> items = new ArrayList<>();
                 for(int i = 0; i < references.size(); i++) {
-                    items.add(references.get(i));
+                    items.add(itemDataList.get(i));
 
                 }
 
-                String[] nameArray = new String[items.size()];
+                ItemData[] itemArray = new ItemData[items.size()];
                 for(int i = 0; i < items.size(); i++) {
                     // Populate refArray with the emails
-                    nameArray[i] = items.get(i);
+                    itemArray[i] = items.get(i);
                 }
 
-                ListAdapter bisonAdapter = new CustomAdapter(MainActivity.this, nameArray);
+                ListAdapter bisonAdapter = new CustomAdapter(MainActivity.this, itemArray);
                 ListView bisonListView = (ListView) findViewById(R.id.bison_listview);
                 bisonListView.setAdapter(bisonAdapter);
 
@@ -117,10 +114,8 @@ public class MainActivity extends AppCompatActivity
                                 String stuff = String.valueOf(parent.getItemAtPosition(position));
                                 startActivity((new Intent(MainActivity.this, ItemActivity.class)).putExtra("itemKey", itemKey));
                             }
-
                         }
                 );
-
             }
 
             @Override
@@ -146,11 +141,6 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
-
-
-
-
 
     }
     @Override
@@ -222,4 +212,17 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+}
+
+class ItemData
+{
+    public String name;
+    public String ref;
+
+    ItemData(String name, String ref)
+    {
+        this.name = name;
+        this.ref = ref;
+    }
+
 }
