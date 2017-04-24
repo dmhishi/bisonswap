@@ -76,7 +76,8 @@ public class ItemActivity extends AppCompatActivity {
         // Holds the offer.key value
         offeredBaseKey = new ArrayList<>();
 
-        iRef.addValueEventListener(new ValueEventListener() {
+        // Changed this listener... now the only downside is that a rejected item will not disappear until the activity is reloaded
+        iRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // Hide the offer textview unless you own it

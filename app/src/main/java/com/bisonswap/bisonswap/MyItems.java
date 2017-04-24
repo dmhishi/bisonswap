@@ -61,7 +61,7 @@ public class MyItems extends AppCompatActivity {
         references = new ArrayList<>();
         Query queryRef = itemRef.orderByKey();
 
-        queryRef.addValueEventListener(new ValueEventListener() {
+        queryRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
