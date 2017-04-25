@@ -23,20 +23,22 @@
 
     <string-array name="category_array">
         <item>Category</item>
-        <item>Cat 1</item>
-        <item>Cat 2</item>
-        <item>...</item>
-        <item>Cat 8</item>
-        <item>Cat 9</item>
+        <item>Home Goods</item>
+        <item>Electronics</item>
+        <item>Clothing</item>
+        <item>Miscellaneous</item>
     </string-array>
 
     <string-array name="rating_array">
         <item>Item condition</item>
-        <item>1 - very bad</item>
-        <item>2 - bad</item>
-        <item>...</item>
-        <item>7 - like new</item>
-        <item>8 - new</item>
+        <item>1 - Like New</item>
+        <item>2 - Very Good</item>
+        <item>3 - Good</item>
+        <item>4 - Fair</item>
+        <item>5 - Acceptable</item>
+        <item>6 - Has Defects</item>
+        <item>7 - Slightly Damaged</item>
+        <item>8 - Need Repair</item>
     </string-array>
 
     <string-array name="offer_feedback_spinner">
@@ -50,5 +52,21 @@
         <item>8</item>
         <item>9</item>
         <item>10</item>
+    </string-array>
+
+    <string-array name="offer_feedback_spinner2">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </string-array>
+
+    <string-array name="offer_feedback_spinner3">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
     </string-array>
 </resources>

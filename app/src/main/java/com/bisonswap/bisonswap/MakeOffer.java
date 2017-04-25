@@ -76,7 +76,7 @@ public class MakeOffer extends AppCompatActivity {
                         // If this item belongs to the current user display it
                         itemKeys.add(d.getKey());
                         itemNames.add(itemName);
-                        imgRefArrayList.add(imgRef);
+                        imgRefArrayList.add("http://bisonswap.com/uploads/" + imgRef);
                         references.add(d.child("itemName").getValue().toString());
                     }
                 }
@@ -88,7 +88,7 @@ public class MakeOffer extends AppCompatActivity {
                 ItemData[] nameArray = new ItemData[items.size()];
                 for(int i = 0; i < items.size(); i++) {
                     // Populate refArray with the emails
-                    nameArray[i] = new ItemData(items.get(i), "bison");
+                    nameArray[i] = new ItemData(items.get(i), imgRefArrayList.get(i));
                 }
                 final ListAdapter bisonAdapter = new CustomAdapter(MakeOffer.this, nameArray);
                 ListView bisonListView = (ListView) findViewById(R.id.item_view);
@@ -103,9 +103,9 @@ public class MakeOffer extends AppCompatActivity {
                                 ImageView imageView = (ImageView) findViewById(R.id.bisonImage);
                                 String imgRef = imgRefArrayList.get(position);
                                 //Log.d("IMGREF", imgRef);
-                                Glide.with(MakeOffer.this)
-                                        .load("http://bisonswap.com/uploads/" + imgRef)
-                                        .into(imageView);
+//                                Glide.with(MakeOffer.this)
+//                                        .load("http://bisonswap.com/uploads/" + imgRef)
+//                                        .into(imageView);
                                 String itemKey = itemKeys.get(position);
                                 String stuff = String.valueOf(parent.getItemAtPosition(position));
                                 Log.d("TESTING TESTING", "DOES THIS WORK???");

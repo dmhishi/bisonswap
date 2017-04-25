@@ -50,7 +50,11 @@ public class OfferFeedback extends AppCompatActivity {
 
     private Button submit;
     private Spinner rateSpinner;
+    private Spinner rateSpinner2;
+    private Spinner rateSpinner3;
     private int rate;
+    private int rate2;
+    private int rate3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +81,42 @@ public class OfferFeedback extends AppCompatActivity {
 
             }
         });
+
+        rateSpinner2 = (Spinner) findViewById(R.id.itemRating2);
+        ArrayAdapter<CharSequence> offerSpinner2 = ArrayAdapter.createFromResource(this,
+                R.array.offer_feedback_spinner2, android.R.layout.simple_spinner_item);
+        offerSpinner2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        rateSpinner2.setAdapter(offerSpinner2);
+
+        rateSpinner2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                rate2 = Integer.parseInt(adapterView.getItemAtPosition(i).toString());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+        rateSpinner3 = (Spinner) findViewById(R.id.itemRating3);
+        ArrayAdapter<CharSequence> offerSpinner3 = ArrayAdapter.createFromResource(this,
+                R.array.offer_feedback_spinner3, android.R.layout.simple_spinner_item);
+        offerSpinner3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        rateSpinner3.setAdapter(offerSpinner3);
+
+        rateSpinner3.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                rate3 = Integer.parseInt(adapterView.getItemAtPosition(i).toString());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
     }
 
     // Submit a rating for the user
@@ -89,7 +129,7 @@ public class OfferFeedback extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
         // Update the users database and add a new rating
         myRef = database.getReference().child("users").child(uid);
-        myRef.child(String.valueOf(System.currentTimeMillis())).setValue(new Rating(rate));
+        myRef.child(String.valueOf(System.currentTimeMillis())).setValue(new Rating(rate+rate2+rate3));
         if(getIntent().getStringExtra("OfferMenu").equals("1")) {
             // This person came from OfferMenu.java
             DatabaseReference myRef2 = database.getReference().child("items").child(itemKey).child("offer").child(offerKey);
