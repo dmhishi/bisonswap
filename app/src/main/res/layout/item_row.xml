@@ -6,7 +6,7 @@
     android:layout_height="150dp">
 
     <ImageView
-        android:id="@+id/itView"
+        android:id="@+id/bisonImage"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:padding="16dp"
@@ -15,25 +15,29 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
+        android:layout_marginTop="16dp"
         android:gravity="center_vertical|right"
         android:orientation="vertical">
 
 
         <TextView
-            android:id="@+id/itName"
+            android:id="@+id/bisonItemText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:text="This is the description." />
+            android:text="This is the description."
+            android:layout_gravity="left"
+            android:textSize="22sp"
+            android:textStyle="bold"/>
 
         <TextView
             android:id="@+id/itDescription"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="left"
             android:layout_margin="5dp"
-            android:text="This is the description." />
+            android:text="This is the description."
+            android:textSize="16sp"/>
     </LinearLayout>
 
 </LinearLayout>

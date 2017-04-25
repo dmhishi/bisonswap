@@ -21,14 +21,14 @@ import com.bumptech.glide.Glide;
 class CustomAdapter extends ArrayAdapter<ItemData>{
 
     public CustomAdapter( Context context,  ItemData[] items) {
-        super(context, R.layout.custom_row, items);
+        super(context, R.layout.item_row, items);
     }
 
     @NonNull
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater bisonInflater = LayoutInflater.from(getContext());
-        View customView = bisonInflater.inflate(R.layout.custom_row, parent, false);
+        View customView = bisonInflater.inflate(R.layout.item_row, parent, false);
 
         ItemData singleItem = getItem(position);
         TextView bisonText = (TextView) customView.findViewById(R.id.bisonItemText);
