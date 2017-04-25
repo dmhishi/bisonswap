@@ -130,7 +130,7 @@ public class MyOffers extends AppCompatActivity {
                                         .into(imageView);
                                 String itemKey = itemKeys.get(position);
                                 String stuff = String.valueOf(parent.getItemAtPosition(position));
-                                Intent o_Menu = new Intent(MyOffers.this, OfferMenu.class);
+                                Intent o_Menu = new Intent(MyOffers.this, OfferMenu_manageOffers.class);
                                 o_Menu.putExtra("ownsItem", "1");
                                 o_Menu.putExtra("offerItemKey", offerBaseKeys.get(position));
                                 o_Menu.putExtra("itemKey", itemKey);

@@ -110,17 +110,6 @@
             android:text="Provide Feedback"
             android:onClick="provideFeedback"/>
 
-        <Button
-            android:id="@+id/extendOffer"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity = "center"
-            android:text="Extend Offer"
-            android:onClick="extendOffer"/>
-
         <ListView
             android:id="@+id/offer_view"
             android:layout_width="match_parent"

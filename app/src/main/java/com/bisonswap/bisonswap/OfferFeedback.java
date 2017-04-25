@@ -95,6 +95,11 @@ public class OfferFeedback extends AppCompatActivity {
             DatabaseReference myRef2 = database.getReference().child("items").child(itemKey).child("offer").child(offerKey);
             myRef2.child("rated").setValue(1);
         }
+        else if(getIntent().getStringExtra("OfferMenu").equals("0")) {
+            // This person came from OfferMenu_manageOffers.java
+            DatabaseReference myRef2 = database.getReference().child("items").child(itemKey);
+            myRef2.child("rated").setValue(1);
+        }
     }
     class Rating {
         public int rating;

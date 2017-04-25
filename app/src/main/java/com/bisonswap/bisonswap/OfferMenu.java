@@ -49,7 +49,7 @@ public class OfferMenu extends AppCompatActivity {
 
     private Button accept;
     private Button reject;
-    private Button extend;
+//    private Button extend;
     private Button shipped;
     private Button received;
     private Button feedback;
@@ -66,7 +66,7 @@ public class OfferMenu extends AppCompatActivity {
         // Get all the buttons and other stuff used on this page
         accept = (Button) findViewById(R.id.acceptOffer);
         reject = (Button) findViewById(R.id.rejectOffer);
-        extend = (Button) findViewById(R.id.extendOffer);
+//        extend = (Button) findViewById(R.id.extendOffer);
         shipped = (Button) findViewById(R.id.itemShipped);
         received = (Button) findViewById(R.id.itemReceived);
         feedback = (Button) findViewById(R.id.itemFeedback);
@@ -76,7 +76,7 @@ public class OfferMenu extends AppCompatActivity {
 
         accept.setVisibility(View.INVISIBLE);
         reject.setVisibility(View.INVISIBLE);
-        extend.setVisibility(View.INVISIBLE);
+//        extend.setVisibility(View.INVISIBLE);
         shipped.setVisibility(View.INVISIBLE);
         received.setVisibility(View.INVISIBLE);
         feedback.setVisibility(View.INVISIBLE);
@@ -125,7 +125,7 @@ public class OfferMenu extends AppCompatActivity {
             case 1:
                 // Case 1: This person has an offer open on the item
 
-                extend.setVisibility(View.VISIBLE);
+//                extend.setVisibility(View.VISIBLE);
                 // Hide the accept and reject buttons
 //                accept.setVisibility(View.GONE);
 //                reject.setVisibility(View.GONE);
