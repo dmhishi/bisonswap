@@ -157,7 +157,8 @@ public class AddItem extends AppCompatActivity implements View.OnClickListener /
                             progressDialog.dismiss();
 
                             //and displaying a success toast
-                            Toast.makeText(getApplicationContext(), "File Uploaded ", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(), "Your item has been uploaded ", Toast.LENGTH_LONG).show();
+
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {

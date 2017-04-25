@@ -24,7 +24,7 @@
             android:id="@+id/bisonItemText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
+            android:layout_marginTop="5dp"
             android:text="This is the description."
             android:layout_gravity="left"
             android:textSize="22sp"
@@ -35,9 +35,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="left"
-            android:layout_margin="5dp"
             android:text="This is the description."
             android:textSize="16sp"/>
+        <TextView
+            android:id="@+id/rating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:layout_gravity="left"
+            android:text="rating"
+            android:textSize="16sp"
+            android:textStyle="italic"/>
     </LinearLayout>
 
 </LinearLayout>

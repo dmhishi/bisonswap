@@ -74,6 +74,7 @@ public class MainActivity extends AppCompatActivity
                     Log.d("KEY:", d.getKey());
                     String itemName = d.child("itemName").getValue().toString();
                     String itemDescription = d.child("itemDescription").getValue().toString();
+                    String itemRating = d.child("rating").getValue().toString();
                     String imgRef = d.child("pic_1").getValue().toString();
 //
                     itemKeys.add(d.getKey());
@@ -81,7 +82,7 @@ public class MainActivity extends AppCompatActivity
                     imgRefArrayList.add(imgRef);
                     references.add(d.child("itemName").getValue().toString());
 
-                    itemDataList.add(new ItemData(itemName, "http://bisonswap.com/uploads/"+imgRef));
+                    itemDataList.add(new ItemData(itemName, "http://bisonswap.com/uploads/"+imgRef, itemDescription, itemRating));
                 }
                 ArrayList<ItemData> items = new ArrayList<>();
                 for(int i = 0; i < references.size(); i++) {
@@ -217,11 +218,23 @@ class ItemData
 {
     public String name;
     public String ref;
+    public String description;
+    public String rating;
 
     ItemData(String name, String ref)
     {
         this.name = name;
         this.ref = ref;
+        this.description = "";
+        this.rating = "";
+    }
+
+    ItemData(String name, String ref, String description, String rating)
+    {
+        this.name = name;
+        this.ref = ref;
+        this.description = description;
+        this.rating = rating;
     }
 
 }
