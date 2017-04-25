@@ -10,14 +10,14 @@
         android:layout_height="wrap_content"
         android:padding="20dp"
         android:text="How closely did the item match the rating given to it?"
-        android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
     <Spinner
         android:id="@+id/itemRating"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ratingText"/>
 
     <Button
         android:id="@+id/Submit"
@@ -27,6 +27,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity = "center"
+        android:layout_below="@id/ratingText"
         android:text="Submit Feedback"
         android:onClick="submitFeedback"/>
 

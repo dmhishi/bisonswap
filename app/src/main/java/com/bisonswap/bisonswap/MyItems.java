@@ -89,7 +89,7 @@ public class MyItems extends AppCompatActivity {
                 ItemData[] nameArray = new ItemData[items.size()];
                 for(int i = 0; i < items.size(); i++) {
                     // Populate refArray with the emails
-                    nameArray[i] = new ItemData(items.get(i), "bison");
+                    nameArray[i] = new ItemData(items.get(i), "http://bisonswap.com/uploads/" + imgRefArrayList.get(i));
                 }
 
                 ListAdapter bisonAdapter = new CustomAdapter(MyItems.this, nameArray);
@@ -105,9 +105,9 @@ public class MyItems extends AppCompatActivity {
                                 ImageView imageView = (ImageView) findViewById(R.id.bisonImage);
                                 String imgRef = imgRefArrayList.get(position);
                                 //Log.d("IMGREF", imgRef);
-                                Glide.with(MyItems.this)
-                                        .load("http://bisonswap.com/uploads/" + imgRef)
-                                        .into(imageView);
+//                                Glide.with(MyItems.this)
+//                                        .load("http://bisonswap.com/uploads/" + imgRef)
+//                                        .into(imageView);
                                 String itemKey = itemKeys.get(position);
                                 String stuff = String.valueOf(parent.getItemAtPosition(position));
                                 startActivity((new Intent(MyItems.this, ItemActivity.class)).putExtra("itemKey", itemKey));

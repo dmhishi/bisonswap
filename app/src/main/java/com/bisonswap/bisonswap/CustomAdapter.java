@@ -8,6 +8,7 @@ import android.content.Context;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,6 +36,7 @@ class CustomAdapter extends ArrayAdapter<ItemData>{
         bisonText.setText(singleItem.name);
         if(singleItem.name.equals("bison"))
             singleItem.ref = "http://bisonswap.com/img/logo-lq.png";
+//        Log.d("SINGLE ITEM REF", singleItem.ref);
         Glide.with(getContext())
                 .load(singleItem.ref)
                 .into(bisonImage);

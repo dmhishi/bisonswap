@@ -128,7 +128,7 @@ public class ItemActivity extends AppCompatActivity {
                         ItemData[] nameArray = new ItemData[offeredItemName.size()];
                         for(int i = 0; i < offeredItemName.size(); i++) {
                             // Populate nameArray with item names
-                            nameArray[i] = new ItemData(offeredItemName.get(i), offerPics.get(i));
+                            nameArray[i] = new ItemData(offeredItemName.get(i), "http://bisonswap.com/uploads/" + offerPics.get(i));
                         }
                         // TODO: Make a custom activity to accept or reject offers
                         ListAdapter bisonAdapter = new CustomAdapter(ItemActivity.this, nameArray);
@@ -141,11 +141,11 @@ public class ItemActivity extends AppCompatActivity {
                                         // TODO: Fix this and have it properly load thumbnails
                                         ImageView imageView = (ImageView) findViewById(R.id.bisonImage);
                                         // TODO: imgRef is just a placeholder, it needs to actually get an image of the offered item
-                                        String imgRef = "http://bisonswap.com/uploads/images~ZxNPU2WLthcretRrOrp0b86bmKc2~apple%20watch.png";
+//                                        String imgRef = "http://bisonswap.com/uploads/images~ZxNPU2WLthcretRrOrp0b86bmKc2~apple%20watch.png";
                                         //Log.d("IMGREF", imgRef);
-                                        Glide.with(ItemActivity.this)
-                                                .load("http://bisonswap.com/uploads/" + imgRef)
-                                                .into(imageView);
+//                                        Glide.with(ItemActivity.this)
+//                                                .load("http://bisonswap.com/uploads/" + imgRef)
+//                                                .into(imageView);
                                         String o_itemKey = offeredItemKey.get(position);
                                         String o_baseKey = offeredBaseKey.get(position);
                                         String stuff = String.valueOf(parent.getItemAtPosition(position));

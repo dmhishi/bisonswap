@@ -111,7 +111,7 @@ public class MyOffers extends AppCompatActivity {
                 ItemData[] nameArray = new ItemData[items.size()];
                 for(int i = 0; i < items.size(); i++) {
                     // Populate refArray with the emails
-                    nameArray[i] = new ItemData(items.get(i), "bison");
+                    nameArray[i] = new ItemData(items.get(i), "http://bisonswap.com/uploads/" + imgRefArrayList.get(i));
                 }
 
                 ListAdapter bisonAdapter = new CustomAdapter(MyOffers.this, nameArray);
@@ -123,11 +123,11 @@ public class MyOffers extends AppCompatActivity {
                             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                                 // TODO: Fix this and have it properly load thumbnails
                                 ImageView imageView = (ImageView) findViewById(R.id.bisonImage);
-                                String imgRef = imgRefArrayList.get(position);
+//                                String imgRef = imgRefArrayList.get(position);
                                 //Log.d("IMGREF", imgRef);
-                                Glide.with(MyOffers.this)
-                                        .load("http://bisonswap.com/uploads/" + imgRef)
-                                        .into(imageView);
+//                                Glide.with(MyOffers.this)
+//                                        .load("http://bisonswap.com/uploads/" + imgRef)
+//                                        .into(imageView);
                                 String itemKey = itemKeys.get(position);
                                 String stuff = String.valueOf(parent.getItemAtPosition(position));
                                 Intent o_Menu = new Intent(MyOffers.this, OfferMenu_manageOffers.class);

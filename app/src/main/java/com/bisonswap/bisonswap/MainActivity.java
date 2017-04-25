@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity
                     imgRefArrayList.add(imgRef);
                     references.add(d.child("itemName").getValue().toString());
 
-                    itemDataList.add(new ItemData(itemName, "http://bisonswap.com/uploads"+imgRef));
+                    itemDataList.add(new ItemData(itemName, "http://bisonswap.com/uploads/"+imgRef));
                 }
                 ArrayList<ItemData> items = new ArrayList<>();
                 for(int i = 0; i < references.size(); i++) {
@@ -98,7 +98,6 @@ public class MainActivity extends AppCompatActivity
                 ListAdapter bisonAdapter = new CustomAdapter(MainActivity.this, itemArray);
                 ListView bisonListView = (ListView) findViewById(R.id.bison_listview);
                 bisonListView.setAdapter(bisonAdapter);
-
                 //TODO: Change this to have to go to page
                 bisonListView.setOnItemClickListener(
                         new AdapterView.OnItemClickListener() {
@@ -106,10 +105,10 @@ public class MainActivity extends AppCompatActivity
                             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                                 ImageView imageView = (ImageView) findViewById(R.id.bisonImage);
                                 String imgRef = imgRefArrayList.get(position);
-                                Glide.with(MainActivity.this)
-                                        .using(new FirebaseImageLoader())
-                                        .load(FirebaseStorage.getInstance().getReference().child(imgRef))
-                                        .into(imageView);
+//                                Glide.with(MainActivity.this)
+//                                        .using(new FirebaseImageLoader())
+//                                        .load(FirebaseStorage.getInstance().getReference().child(imgRef))
+//                                        .into(imageView);
                                 String itemKey = itemKeys.get(position);
                                 String stuff = String.valueOf(parent.getItemAtPosition(position));
                                 startActivity((new Intent(MainActivity.this, ItemActivity.class)).putExtra("itemKey", itemKey));
