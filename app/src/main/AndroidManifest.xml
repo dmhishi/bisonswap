@@ -36,7 +36,8 @@
         <activity android:name=".MakeOffer" />
         <activity android:name=".OfferMenu" />
         <activity android:name=".OfferFeedback" />
-        <activity android:name=".OfferMenu_manageOffers"></activity>
+        <activity android:name=".OfferMenu_manageOffers" />
+        <activity android:name=".Terms"></activity>
     </application>
 
 </manifest>
