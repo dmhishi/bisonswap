@@ -17,8 +17,9 @@ public class Offer {
     public int rated;
     public int shipped;
     public String uid;
+    public String pic_1;
 
-    public Offer(int accepted, int arrived, String email, String item, String itemName, int rated, int shipped, String uid) {
+    public Offer(int accepted, int arrived, String email, String item, String itemName, int rated, int shipped, String uid, String pic_1) {
         this.accepted = accepted;
         this.arrived = arrived;
         this.date = String.valueOf(System.currentTimeMillis());
@@ -28,5 +29,6 @@ public class Offer {
         this.rated = rated;
         this.shipped = shipped;
         this.uid = uid;
+        this.pic_1 = pic_1;
     }
 }

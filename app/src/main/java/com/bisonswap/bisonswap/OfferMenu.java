@@ -215,6 +215,7 @@ public class OfferMenu extends AppCompatActivity {
                     updates.put("rated", d.child("rated").getValue());
                     updates.put("shipped", d.child("shipped").getValue());
                     updates.put("uid", d.child("uid").getValue().toString());
+                    updates.put("pic_1", d.child("pic_1").getValue().toString());
                 }
                 Map<String, Object> childUpdates = new HashMap<>();
                 childUpdates.put("items/" + itemKey + "/offer/" + offerKey, updates);
@@ -291,6 +292,11 @@ public class OfferMenu extends AppCompatActivity {
     }
 
     public void provideFeedback(View v) {
-
+        Intent feedbackIntent = new Intent(this, OfferFeedback.class);
+        feedbackIntent.putExtra("uid", getIntent().getStringExtra("uid"));
+        feedbackIntent.putExtra("OfferMenu", "1");
+        feedbackIntent.putExtra("itemKey", getIntent().getStringExtra("itemKey"));
+        feedbackIntent.putExtra("offerKey", getIntent().getStringExtra("offerItemKey"));
+        startActivity(feedbackIntent);
     }
 }

@@ -79,6 +79,8 @@ public class ItemActivity extends AppCompatActivity {
         offeredBaseKey = new ArrayList<>();
         // Holds the offer emails
         offerEmails = new ArrayList<>();
+        // Holds the offer pics
+        offerPics = new ArrayList<>();
 
         // Changed this listener... now the only downside is that a rejected item will not disappear until the activity is reloaded
         iRef.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -153,6 +155,7 @@ public class ItemActivity extends AppCompatActivity {
                                         offer_menu.putExtra("itemKey", itemKey);
                                         offer_menu.putExtra("offerKey", o_itemKey);
                                         offer_menu.putExtra("ownerEmail", offerEmails.get(position));
+                                        offer_menu.putExtra("uid", offeredItemUid.get(position));
                                         startActivity(offer_menu);
 //                                        startActivity((new Intent(ItemActivity.this, OfferMenu.class)).putExtra("itemKey", o_itemKey));
                                     }
