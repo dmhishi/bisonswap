@@ -66,7 +66,7 @@ public class ChatPick extends AppCompatActivity {
                 ItemData[] refArray = new ItemData[emails.size()];
                 for(int i = 0; i < emails.size(); i++) {
                     // Populate refArray with the emails
-                    refArray[i] = new ItemData(emails.get(i), "bison");
+                    refArray[i] = new ItemData(emails.get(i), mFirebaseAuth.getCurrentUser().getPhotoUrl().toString());
                 }
                 // Populate the list view with emails
                 ListAdapter bisonAdapter = new CustomAdapter(ChatPick.this, refArray);
@@ -76,12 +76,12 @@ public class ChatPick extends AppCompatActivity {
                         new AdapterView.OnItemClickListener() {
                             @Override
                             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                                String stuff = String.valueOf(parent.getItemAtPosition(position));
+                                ItemData stuff = (ItemData) parent.getItemAtPosition(position);
                                 // Create an intent that passes the owner email parameter to
                                 // Chat
 //                                Intent ChatListIntent = new Intent(test.this, ChatList.class);
 //                                ChatListIntent.putExtra("ownerEmail", String.valueOf(parent.getItemAtPosition(position)));
-                                startActivity(new Intent(ChatPick.this, Chat.class).putExtra("ownerEmail", String.valueOf(parent.getItemAtPosition(position))));
+                                startActivity(new Intent(ChatPick.this, Chat.class).putExtra("ownerEmail", stuff.name));
                             }
 
                         }
