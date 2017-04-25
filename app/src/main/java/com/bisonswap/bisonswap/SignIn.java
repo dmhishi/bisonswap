@@ -81,6 +81,11 @@ public class SignIn extends AppCompatActivity implements GoogleApiClient.OnConne
         }
     }
 
+    public void terms(View v)
+    {
+        startActivity(new Intent(this, Terms.class));
+    }
+
     private void signIn() {
         ProgressDialog dialog = new ProgressDialog(this);
         dialog.setTitle("Connecting...");
