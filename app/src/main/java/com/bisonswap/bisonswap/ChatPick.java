@@ -66,7 +66,7 @@ public class ChatPick extends AppCompatActivity {
                 ItemData[] refArray = new ItemData[emails.size()];
                 for(int i = 0; i < emails.size(); i++) {
                     // Populate refArray with the emails
-                    refArray[i] = new ItemData(emails.get(i).split("@")[0], mFirebaseAuth.getCurrentUser().getPhotoUrl().toString());
+                    refArray[i] = new ItemData(emails.get(i), mFirebaseAuth.getCurrentUser().getPhotoUrl().toString());
                 }
                 // Populate the list view with emails
                 ListAdapter bisonAdapter = new CustomAdapter(ChatPick.this, refArray);

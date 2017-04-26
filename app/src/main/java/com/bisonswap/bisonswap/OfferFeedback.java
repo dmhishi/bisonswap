@@ -121,6 +121,7 @@ public class OfferFeedback extends AppCompatActivity {
 
     // Submit a rating for the user
     public void submitFeedback(View v) {
+        Toast.makeText(getApplicationContext(), "Thanks for leaving feedback!", Toast.LENGTH_SHORT).show();
         Log.d("RATING", String.valueOf(rate));
         String uid = getIntent().getStringExtra("uid");
         String itemKey = getIntent().getStringExtra("itemKey");
@@ -140,6 +141,7 @@ public class OfferFeedback extends AppCompatActivity {
             DatabaseReference myRef2 = database.getReference().child("items").child(itemKey);
             myRef2.child("rated").setValue(1);
         }
+        startActivity(new Intent(OfferFeedback.this, MainActivity.class));
     }
     class Rating {
         public int rating;

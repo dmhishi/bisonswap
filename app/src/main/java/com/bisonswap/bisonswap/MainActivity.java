@@ -187,17 +187,18 @@ public class MainActivity extends AppCompatActivity
             startActivity(new Intent(this, AddItem.class));
         } else if (id == R.id.my_items) {
             startActivity(new Intent(this, MyItems.class));
-        } else if (id == R.id.nav_manage) {
-
         }
+//        else if (id == R.id.nav_manage) {
+//
+//        }
         else if (id == R.id.nav_signout) {
             // TODO: Let users choose a different account to sign in with
             mFirebaseAuth.signOut();
             startActivity(new Intent(this, SignIn.class));
         }
-        else if (id == R.id.chat) {
-            startActivity(new Intent(this, Chat.class));
-        }
+//        else if (id == R.id.chat) {
+//            startActivity(new Intent(this, Chat.class));
+//        }
         else if(id == R.id.chat_pick) {
             startActivity(new Intent(this, ChatPick.class));
         }
