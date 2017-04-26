@@ -124,6 +124,7 @@ public class OfferMenu_manageOffers extends AppCompatActivity {
 
     // Extend the offer by resetting the date in items/itemKey/offer/offerKey
     public void extendOffer(View v) {
+        Toast.makeText(getApplicationContext(), "Offer extended", Toast.LENGTH_SHORT).show();
         final String itemKey = getIntent().getStringExtra("itemKey").toString();
         final String offerKey = getIntent().getStringExtra("offerItemKey").toString();
         database = FirebaseDatabase.getInstance();
@@ -145,6 +146,7 @@ public class OfferMenu_manageOffers extends AppCompatActivity {
     }
 
     public void itemShipped(View v) {
+        Toast.makeText(getApplicationContext(), "Item shipped", Toast.LENGTH_SHORT).show();
         final String itemKey = getIntent().getStringExtra("itemKey").toString();
         final String offerKey = getIntent().getStringExtra("offerItemKey").toString();
         database = FirebaseDatabase.getInstance();
@@ -166,6 +168,7 @@ public class OfferMenu_manageOffers extends AppCompatActivity {
     }
 
     public void itemReceived(View v) {
+        Toast.makeText(getApplicationContext(), "Item received", Toast.LENGTH_SHORT).show();
         final String itemKey = getIntent().getStringExtra("itemKey").toString();
         final String offerKey = getIntent().getStringExtra("offerItemKey").toString();
         database = FirebaseDatabase.getInstance();
