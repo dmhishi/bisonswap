@@ -113,11 +113,14 @@ public class MakeOffer extends AppCompatActivity {
                                 // Create a new offer
                                 Offer offer = new Offer(0, 0, mFirebaseUser.getEmail(), itemKeys.get(position),
                                         references.get(position), 0, 0, mFirebaseUser.getUid().toString(),
-                                        imgRefArrayList.get(position));
+                                        imgRefArrayList.get(position).substring(29));
                                 // Push the offer to the database
                                 DatabaseReference MakeOfferRef = FirebaseDatabase.getInstance().getReference();
                                 MakeOfferRef.child("items/" + getIntent().getStringExtra("itemKey").toString()
                                         + "/offer/" + String.valueOf(System.currentTimeMillis())).setValue(offer);
+                                Toast.makeText(getApplicationContext(), "Offer made", Toast.LENGTH_SHORT).show();
+                                startActivity(new Intent(MakeOffer.this, MainActivity.class));
+
 //                                startActivity((new Intent(MakeOffer.this, ItemActivity.class)).putExtra("itemKey", itemKey));
                             }
 
