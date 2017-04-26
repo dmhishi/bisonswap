@@ -36,7 +36,10 @@ class CustomAdapter extends ArrayAdapter<ItemData>{
         TextView bisonText = (TextView) customView.findViewById(R.id.bisonItemText);
         ImageView bisonImage = (ImageView) customView.findViewById(R.id.bisonImage);
         bisonText.setText(singleItem.name);
-        bisonDescription.setText(singleItem.description);
+        if(singleItem.description.length()>50)
+            bisonDescription.setText(singleItem.description.substring(0, 50));
+        else
+            bisonDescription.setText(singleItem.description);
         bisonRating.setText(singleItem.rating);
         if(singleItem.name.equals("bison"))
             singleItem.ref = "http://bisonswap.com/img/logo-lq.png";

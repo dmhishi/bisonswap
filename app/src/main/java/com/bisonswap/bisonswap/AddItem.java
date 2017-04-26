@@ -149,11 +149,6 @@ public class AddItem extends AppCompatActivity implements View.OnClickListener /
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                             Item item = new Item(0, email, itemCategory, itemDescription, itemName, pic_1, 0, rating, 0, FirebaseAuth.getInstance().getCurrentUser().getUid());
                             dRef.child("items/" + pic_1).setValue(item);
-                            Glide.with(AddItem.this)
-                                    .using(new FirebaseImageLoader())
-                                    .load(sRef.child(pic_1))
-                                    .into(imageView);
-                            //hiding the progress dialog
                             progressDialog.dismiss();
 
                             //and displaying a success toast
@@ -182,6 +177,7 @@ public class AddItem extends AppCompatActivity implements View.OnClickListener /
                             progressDialog.setMessage("Uploaded " + ((int) progress) + "%...");
                         }
                     });
+            startActivity(new Intent(this, MainActivity.class));
         }
         //if there is not any file
         else {

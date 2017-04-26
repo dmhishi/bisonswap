@@ -10,12 +10,12 @@
         android:id="@+id/terms_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:padding="20px"
         android:layout_centerHorizontal="true"
         android:layout_centerInParent="false"
         android:gravity="center_horizontal"
         android:text="No returns"
         android:textSize="20sp"
-        android:textStyle="bold"
         android:textColor="#000"/>
 
 </android.support.constraint.ConstraintLayout>
