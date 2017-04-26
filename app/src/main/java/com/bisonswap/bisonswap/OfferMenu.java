@@ -190,6 +190,7 @@ public class OfferMenu extends AppCompatActivity {
 
     // Update items/itemKey/offer/offerKey and change accepted to 1.
     public void acceptOffer(View v) {
+        Toast.makeText(getApplicationContext(), "Offer Accepted", Toast.LENGTH_SHORT).show();
         int ownsItem = Integer.parseInt(getIntent().getStringExtra("ownsItem").toString());
         final String itemKey = getIntent().getStringExtra("itemKey").toString();
         final String offerKey = getIntent().getStringExtra("offerItemKey").toString();
@@ -232,6 +233,7 @@ public class OfferMenu extends AppCompatActivity {
 
     // Remove items/itemKey/offer/offerKey
     public void rejectOffer(View v) {
+        Toast.makeText(getApplicationContext(), "Offer rejected", Toast.LENGTH_SHORT).show();
         int ownsItem = Integer.parseInt(getIntent().getStringExtra("ownsItem").toString());
         final String itemKey = getIntent().getStringExtra("itemKey").toString();
         final String offerKey = getIntent().getStringExtra("offerItemKey").toString();
@@ -241,10 +243,12 @@ public class OfferMenu extends AppCompatActivity {
         // Get the offer reference
         myRef = database.getReference("items").child(itemKey).child("offer").child(offerKey);
         myRef.removeValue();
+        startActivity(new Intent(OfferMenu.this, MainActivity.class));
     }
 
     // Update your item's shipping status
     public void itemShipped(View v) {
+        Toast.makeText(getApplicationContext(), "Item Shipped", Toast.LENGTH_SHORT).show();
         int ownsItem = Integer.parseInt(getIntent().getStringExtra("ownsItem").toString());
         final String itemKey = getIntent().getStringExtra("itemKey").toString();
         final String offerKey = getIntent().getStringExtra("offerItemKey").toString();
@@ -270,6 +274,7 @@ public class OfferMenu extends AppCompatActivity {
 
     // Set the value of arrived in items/itemKey/offer/offerKey to 1
     public void itemReceived(View v) {
+        Toast.makeText(getApplicationContext(), "Item received", Toast.LENGTH_SHORT).show();
         int ownsItem = Integer.parseInt(getIntent().getStringExtra("ownsItem").toString());
         final String itemKey = getIntent().getStringExtra("itemKey").toString();
         final String offerKey = getIntent().getStringExtra("offerItemKey").toString();
